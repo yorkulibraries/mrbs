@@ -57,7 +57,7 @@ module. There are two general categories:
 Internal PHP modules support the following kinds of authentication servers:
 LDAP servers; POP3 email servers; IMAP email servers; NIS servers ; NW servers.
 In addition, three special internal modules support a local list of users for 
-one; a local list of users stored in databse for tthe second; and 
+one; a local list of users stored in databse for the second; and 
 authenticating anybody for the other.
 
 External programs support: NT Domain controllers; Netware servers; PAM servers.
@@ -104,6 +104,18 @@ PHP authentication modules
 |      |                        |                   |                        |
 |      |                        |  - easy to        |                        |
 |      |                        |  configure        |                        |
++------+------------------------+-------------------+------------------------+
+|db_ext|Users validated using   |                   |                        |
+|      |a table in an external  |  - Uses an        |                        |
+|      |MySQL database          |  existing         |  - MySQL only at the   |
+|      |                        |  authentication   |  moment.               |
+|      |                        |  database thereby |                        |
+|      |                        |  saving directory |                        |
+|      |                        |  duplication.     |                        |
+|      |                        |                   |                        |
+|      |                        |  - easy to        |                        |
+|      |                        |  configure        |                        |
+|      |                        |                   |                        |
 +------+------------------------+-------------------+------------------------+
 |ldap  |Users validated using   |                   |                        |
 |      |LDAP directory services.|                   |                        |
@@ -289,6 +301,16 @@ for historical reasons:
 |       |by OmniHTTPd during the       |                    |                |
 |       |session initiation.           |                    |                |
 +-------+------------------------------+--------------------+----------------+
+|remote_|The user's identity is        |                    |                |
+|user   |determined by reading the     |                    |                |
+|       |REMOTE_USER environment       | - For users that   |  - Requires a  |
+|       |variable.                     | already have an    |  web server    |
+|       |Use in combination with       | wider auth.        |  setup that    |
+|       |authentication "none", as     | scheme that sets   |  sets          |
+|       |authentication has already    | REMOTE_USER, allows|  REMOTE_USER.  |
+|       |been done by the system that  | MRBS to use that   |  Could be hard |
+|       |sets REMOTE_USER              | scheme             |  to set up     |
++-------+------------------------------+--------------------+----------------+
 |ip     |Users are identified by the IP|                    |                |
 |       |address of their computer.    |                    |                |
 |       |                              |  - Easy to setup,  |  - Incompatible|
@@ -439,7 +461,6 @@ Authentication method, usable on the Internet.
 
  The authentication is done by the new module auth_db.inc.
  Enable it by setting $auth["type"]="db" in config.inc.php.
- This works only with session_php.inc or session_cookie.inc.
 
  Note: The names of administrators are still defined as usual by the
  $auth["admin"][] list in config.inc.php.
@@ -490,6 +511,46 @@ Authentication method, usable on the Internet.
  all other authentications in mrbs, which delegate the user accounts
  management to an external authority.
 
+
+External DB (db_ext) Authentication
+-----------------------------------
+
+Authentication method, usable on the Internet.
+
+ Works only with Mysql currently.
+
+It works by using one of the installer's own MySQL databases. You can
+configure how to connect to the database server, what database/table to
+use and the names of the "user" and "password" columns.
+
+The configuration items are held in config.inc.php and are as follows:
+
+$auth['db_ext']['db_host'] = 'localhost';
+
+The MySQL server to connect to.
+
+$auth['db_ext']['db_username'] = 'authuser';
+$auth['db_ext']['db_password'] = 'authpass';
+
+The MySQL username and password to connect with.
+
+$auth['db_ext']['db_name'] = 'authdb';
+
+The name of the database.
+
+$auth['db_ext']['db_table'] = 'users';
+
+The table that holds the authentication data.
+
+$auth['db_ext']['column_name_username'] = 'name';
+$auth['db_ext']['column_name_password'] = 'password';
+
+The names of the two columns that hold the authentication data.
+
+$auth['db_ext']['password_format'] = 'md5';
+
+This is the format of the password entries in the table. You can specify
+'md5', 'sha1', 'crypt' or 'plaintext'.
 
 POP3 Authentication
 -------------------
@@ -586,9 +647,10 @@ LDAP Authentication
 
 There are currently three methods for doing LDAP authentication, auth_ldap,
 auth_ldap.pl, auth_ldapsearch.pl.  The preferred method, auth_ldap, uses
-the LDAP functionality built into PHP and is described here.  The other
-methods use the 'ext' authentication method and described further on in
-this file.
+PHP's LDAP extension which must be compiled into PHP or installed and loaded
+as a plugin extension in your php.ini. This method is described here.
+The other methods use the 'ext' authentication method and are described
+further on in this file.
 
 This method can be used by setting config.inc.php as follows:
 
@@ -599,11 +661,23 @@ Also you will need to change the section:
 # 'auth_ldap' configuration settings
 # Where is the LDAP server
 $ldap_host = "localhost";
+# If you have a non-standard LDAP port, you can define it here
+#$ldap_port = 389;
+# If you want to use LDAP v3, change the following to true
+$ldap_v3 = false;
+# If you want to use TLS, change following to true
+$ldap_tls = false;
 # LDAP base distinguish name
 # See AUTHENTICATION for details of how check against multiple base dn's
 $ldap_base_dn = "ou=organizationalunit,dc=my-domain,dc=com";
 # Attribute within the base dn that contains the username
 $ldap_user_attrib = "uid";
+
+You only need to set $ldap_port if your LDAP server uses a non-standard
+port.
+
+If you want to use LDAP v3, or TLS over LDAP set $ldap_v3 or $ldap_tls
+to true, respectively.
 
 This method will attempt an authenticated bind to the ldap server using
 the supplied password and a distinguished name, which is formed from the
@@ -645,7 +719,9 @@ NIS Authentication
 
 $auth["type"] = "nis";
 
-Details?
+Authenticates the user from the NIS passwd.byname map. Requires the crypt
+password to be stored in the passwd.byname map and won't therefore work
+with shadow password NIS.
 
 
 NT Authentication
@@ -723,6 +799,20 @@ $auth["type"] = "none";
 
 Note that technically Omni authentication is actually an MRBS session scheme.
 We put it in this list as it is related with authentication anyway.
+
+REMOTE_USER Authentication
+--------------------------
+
+Get user identity/password using the REMOTE_USER environment variable
+
+To use this session scheme, set in config.inc.php:
+
+  $auth['session']  = 'remote_user';
+  $auth['type'] = 'none';
+
+If you want to display a logout link, set in config.inc.php:
+
+  $auth['remote_user']['logout_link'] = '/logout/link.html'
 
 External Authentication Programs Configuration
 ==============================================
@@ -1053,11 +1143,6 @@ The "session_xxx.inc" file needs to define certain functions:
 +-----------------+---------------------------------------------+------------+
 |getUserName()    |Returns the current user name.               |The user    |
 |                 |                                             |name,       |
-|                 |                                             |or null if  |
-|                 |                                             |not known.  |
-+-----------------+---------------------------------------------+------------+
-|getUserPassword()|Returns the current password.                |His         |
-|                 |                                             |password,   |
 |                 |                                             |or null if  |
 |                 |                                             |not known.  |
 +-----------------+---------------------------------------------+------------+

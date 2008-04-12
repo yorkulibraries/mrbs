@@ -34,15 +34,11 @@ $user_list_link = "edit_users.php";
 function authValidateUser($user, $pass)
 {
    global $tbl_users;
-   global $mdb;
 
+   $user=slashes($user);
    $user=strtolower($user);
    $pass = md5($pass);
-
-   return $mdb->queryOne("SELECT count(*)
-   						  FROM   $tbl_users
-                          WHERE  name=" . $mdb->getTextValue("$user") . "
-                          AND    password=" . $mdb->getTextValue("$pass"), 'integer');
+   return sql_query1("select count(*) from $tbl_users where name='$user' and password='$pass';");
 }
 
 /* authGetUserLevel($user)
