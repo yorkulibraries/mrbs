@@ -80,6 +80,7 @@ $theme = "york";
 // Use the $custom_css_url to override the standard MRBS CSS.
 $custom_css_url = 'css/custom.css';
 
+$auth["type"] = "none";
 // How to get and keep the user ID.
 // set to "remote_user" for prod, "ip" for dev
 $auth["session"] = "ip"; 
@@ -88,6 +89,7 @@ $auth["session"] = "ip";
 // set to real PY username for prod and "127.0.0.1" for dev
 unset($auth["admin"]);
 $auth["admin"][] = "127.0.0.1";
+$auth["admin"][] = "::1";
 
 // admin only restrictions
 $auth['only_admin_can_book_repeat'] = TRUE;
