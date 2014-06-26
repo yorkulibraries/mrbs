@@ -58,3 +58,6 @@ a:link {
 .form_general {
 	min-width: 0 !important;
 }
+#contents h1 {
+	margin-top: 0;
+}
