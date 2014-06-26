@@ -15,12 +15,23 @@ git stash pop
 COPY EXISTING BOOKINGS FROM OLD MRBS pre-1.4.10 NEW MRBS
 ==========================================================
 
-* Extract Data from mrbs_entry for specific area into csv file:
+* Find out the area id and name you want to copy from the old postgresql db eg: Frost is 3
+* insert the area id, name into the mrbs_area table, the area name is not important
 
-POSTGRES SQL> copy (select id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description from mrbs_entry where room_id in(2,9)) to '/tmp/frost_mrbs_entry.csv' delimiter ',';
+INSERT INTO mrbs_area(id, area_name) VALUES (3, 'Group Study Rooms');
 
-* Load Extracted CSV file into new database mrbs_entry table.
+* Extract rooms for the area into csv file
+copy (select id,area_id,room_name,capacity from mrbs_room where area_id=3) to '/tmp/frost_mrbs_room.csv' delimiter ',';
 
-MYSQL> LOAD DATA INFILE '/tmp/frost_mrbs_entry.csv' INTO TABLE mrbs_entry FIELDS TERMINATED BY ',' (id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description);
+* Extract Data from mrbs_entry for specific rooms into csv file
+
+copy (select id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description from mrbs_entry where room_id in(2,9)) to '/tmp/frost_mrbs_entry.csv' delimiter ',';
+
+* Load Extracted CSV file into new mysql database. 
+$mysql -p -uroot databasename
+
+LOAD DATA INFILE '/tmp/frost_mrbs_room.csv' INTO TABLE mrbs_room FIELDS TERMINATED BY ',' (id,area_id,room_name,capacity);
+
+LOAD DATA INFILE '/tmp/frost_mrbs_entry.csv' INTO TABLE mrbs_entry FIELDS TERMINATED BY ',' (id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description);
 
 
