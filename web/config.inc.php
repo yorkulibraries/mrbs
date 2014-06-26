@@ -81,7 +81,10 @@ $theme = "york";
 $custom_css_url = 'css/custom.css';
 
 $auth["type"] = "none";
+<<<<<<< HEAD
 
+=======
+>>>>>>> Added areas and admin menu
 // How to get and keep the user ID.
 // set to "york" for prod, "ip" for dev
 $auth["session"] = "ip"; 
