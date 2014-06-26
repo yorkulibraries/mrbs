@@ -7,7 +7,7 @@ make appropriate changes to web/config.inc.php
 How to update
 ==============
 git stash
-git pull origin
+git pull origin master
 git stash pop
 
 COPY EXISTING BOOKINGS FROM OLD MRBS pre-1.4.10 NEW MRBS
