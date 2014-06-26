@@ -25,13 +25,13 @@ copy (select id,area_id,room_name,capacity from mrbs_room where area_id=3) to '/
 
 * Extract Data from mrbs_entry for specific rooms into csv file
 
-copy (select id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description from mrbs_entry where room_id in(2,9)) to '/tmp/frost_mrbs_entry.csv' delimiter ',';
+copy (select id,start_time,end_time,entry_type,repeat_id,room_id,create_by,name,type,description from mrbs_entry where room_id in(2,9)) to '/tmp/frost_mrbs_entry.csv' delimiter ',';
 
 * Load Extracted CSV file into new mysql database. 
 $mysql -p -uroot databasename
 
 LOAD DATA INFILE '/tmp/frost_mrbs_room.csv' INTO TABLE mrbs_room FIELDS TERMINATED BY ',' (id,area_id,room_name,capacity);
 
-LOAD DATA INFILE '/tmp/frost_mrbs_entry.csv' INTO TABLE mrbs_entry FIELDS TERMINATED BY ',' (id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description);
+LOAD DATA INFILE '/tmp/frost_mrbs_entry.csv' INTO TABLE mrbs_entry FIELDS TERMINATED BY ',' (id,start_time,end_time,entry_type,repeat_id,room_id,create_by,name,type,description);
 
 
