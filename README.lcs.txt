@@ -24,7 +24,6 @@ INSERT INTO mrbs_area(id, area_name) VALUES (3, 'Group Study Rooms');
 copy (select id,area_id,room_name,capacity from mrbs_room where area_id=3) to '/tmp/frost_mrbs_room.csv' delimiter ',';
 
 * Extract Data from mrbs_entry for specific rooms into csv file
-
 copy (select id,start_time,end_time,entry_type,repeat_id,room_id,create_by,name,type,description from mrbs_entry where room_id in(2,9)) to '/tmp/frost_mrbs_entry.csv' delimiter ',';
 
 * Load Extracted CSV file into new mysql database. 
