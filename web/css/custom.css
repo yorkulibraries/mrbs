@@ -28,3 +28,6 @@ a:link {
 		font-size: 16px;
 	}
 }
+#contents h1 {
+	margin-top: 0;
+}
