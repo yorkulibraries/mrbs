@@ -31,3 +31,6 @@ a:link {
 #contents h1 {
 	margin-top: 0;
 }
+#day_main thead tr th {
+	text-align: center;
+}
