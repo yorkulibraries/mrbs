@@ -1,6 +1,6 @@
 <?php
 
-// $Id$
+// $Id: config.inc.php 2799 2014-01-09 12:44:22Z cimorrison $
 
 /**************************************************************************
  *   MRBS Configuration File
@@ -33,7 +33,7 @@
 //
 // A list of valid timezones can be found at http://php.net/manual/timezones.php
 // The following line must be uncommented by removing the '//' at the beginning
-//$timezone = "Europe/London";
+$timezone = "America/Toronto";
 
 
 /*******************
@@ -51,15 +51,15 @@ $db_host = "localhost";
 // can uncomment the following line and specify the port number
 // $db_port = 1234;
 // Database name:
-$db_database = "mrbs";
+$db_database = "__CHANGE_THIS__";
 // Schema name.  This only applies to PostgreSQL and is only necessary if you have more
 // than one schema in your database and also you are using the same MRBS table names in
 // multiple schemas.
 //$db_schema = "public";
 // Database login user name:
-$db_login = "mrbs";
+$db_login = "__CHANGE_THIS__";
 // Database login password:
-$db_password = 'mrbs-password';
+$db_password = '__CHANGE_THIS__';
 // Prefix for table names.  This will allow multiple installations where only
 // one database is available
 $db_tbl_prefix = "mrbs_";
@@ -71,4 +71,31 @@ $db_tbl_prefix = "mrbs_";
    to change the default configuration. Do _NOT_ modify systemdefaults.inc.php
    or areadefaults.inc.php.  */
 
+$mrbs_admin = "Room Booking System";
+$mrbs_admin_email = '"Room Booking System" <mrbs@email.com>';
+$mrbs_company = "York University Libraries";
+$mrbs_company_url = "http://www.library.yorku.ca"; 
+
+$theme = "york";
+
+// Use the $custom_css_url to override the standard MRBS CSS.
+$custom_css_url = 'css/custom.css';
+
+// How to get and keep the user ID.
+// set to "remote_user" for prod, "ip" for dev
+$auth["session"] = "ip"; 
+
+// The list of administrators (can modify other peoples settings).
+// set to real PY username for prod and "127.0.0.1" for dev
+unset($auth["admin"]);
+$auth["admin"][] = "127.0.0.1";
+
+// admin only restrictions
+$auth['only_admin_can_book_repeat'] = TRUE;
+$auth['only_admin_can_book_multiday'] = TRUE;
+$auth['only_admin_can_select_multiroom'] = TRUE;
+
+// Set a maximum duration for bookings
+$max_duration_enabled = TRUE; // Set to TRUE if you want to enforce a maximum duration
+$max_duration_secs = 60*60*3;  // (seconds) - when using "times"
 

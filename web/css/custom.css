@@ -1,0 +1,28 @@
+table#colour_key {
+    display: none;
+}
+div.date_nav {
+    display: none;
+}
+body {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+a:link {
+    font-weight: normal;
+}
+#contents {
+    padding-top: 50px;
+}
+.yul-navbar {
+  background-image: none !important;
+  background-color: #ffffff !important;
+}
+.yul-navbar .navbar-brand img {
+  margin-top: -15px;
+}
+@media (max-width: 480px) {
+  .yul-navbar .navbar-brand img {
+    margin-left: -90px;
+  }
+}
