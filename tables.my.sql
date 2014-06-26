@@ -1,7 +1,7 @@
 #
 # MySQL MRBS table creation script
 #
-# $Id$
+# $Id: tables.my.sql 2803 2014-01-17 14:25:01Z cimorrison $
 #
 # Notes:
 # (1) If you have decided to change the prefix of your tables from 'mrbs_'
@@ -168,3 +168,16 @@ INSERT INTO mrbs_variables (variable_name, variable_content)
   VALUES ( 'db_version', '36');
 INSERT INTO mrbs_variables (variable_name, variable_content)
   VALUES ( 'local_db_version', '1');
+CREATE TABLE mrbs_area_hours
+(
+  id                        int NOT NULL auto_increment,
+  area_id                   int,
+  morningstarts             int,
+  morningstarts_minutes     int,
+  eveningends               int,
+  eveningends_minutes       int,
+  dayoftheweek	            int,
+PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ 

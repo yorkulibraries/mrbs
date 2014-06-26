@@ -1,6 +1,6 @@
 <?php
 
-// $Id$
+// $Id: trailer.inc 2784 2013-11-21 10:48:22Z cimorrison $
 
 function generate_trailer()
 {
@@ -212,7 +212,7 @@ function generate_trailer()
 // Output the trailer for the bottom of the page, including the footer
 function output_trailer()
 {
-  echo generate_trailer();
+  //echo generate_trailer();
 
   // Print footer
   print_footer(FALSE);

@@ -1,6 +1,6 @@
 <?php
 
-// $Id$
+// $Id: functions.inc 2825 2014-03-08 10:02:25Z cimorrison $
 
 
 // Set the default timezone.   Caters for PHP servers that don't
@@ -1671,8 +1671,8 @@ function get_area_settings($area)
   
   // Get all the "per area" config settings                  
   $sql = "SELECT timezone, resolution, default_duration, default_duration_all_day,
-                 morningstarts, morningstarts_minutes,
-                 eveningends, eveningends_minutes,
+		  ah.morningstarts, ah.morningstarts_minutes,
+		  ah.eveningends, ah.eveningends_minutes,
                  private_enabled, private_default, private_mandatory, private_override,
                  min_book_ahead_enabled, max_book_ahead_enabled,
                  min_book_ahead_secs, max_book_ahead_secs,
@@ -1683,8 +1683,8 @@ function get_area_settings($area)
                  max_per_future_enabled, max_per_future,
                  approval_enabled, reminders_enabled, enable_periods,
                  confirmation_enabled, confirmed_default
-          FROM $tbl_area 
-          WHERE id=$area 
+          FROM $tbl_area a, mrbs_area_hours ah
+          WHERE a.id=$area AND a.id=ah.area_id AND ah.dayoftheweek=".date('N', mktime(0,0,0,$_REQUEST['month'],$_REQUEST['day'],$_REQUEST['year']))." 
           LIMIT 1";
   $res = sql_query($sql);
   if (!$res || (sql_count($res) == 0))
