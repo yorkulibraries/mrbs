@@ -130,7 +130,6 @@ function print_theme_header($day, $month, $year, $area, $room)
 						</li>
 						<?php } ?>
 					</ul>
-					
 	        <ul class="nav navbar-nav">
 						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab($default_language_tokens); ?> <span class="caret"></span></a>
@@ -167,11 +166,6 @@ function print_theme_header($day, $month, $year, $area, $room)
 	            </ul>
 	          </li>
 	        </ul>
-					<ul class="nav navbar-nav navbar-right">
-					  <li>
-					    <a role="menuitem" tabindex="-1" href="login"><span class="fa fa-sign-in"></span> <?php echo get_vocab("login"); ?></a>
-					  </li>
-					</ul>
 	      </div>
       </div>
     </nav>
