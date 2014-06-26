@@ -24,11 +24,11 @@ a:link {
 	#dwm_header {
 		display: none;
 	}
-}
-#dwm h2 {
-	font-size: 18px;
-}
-#contents h1 {
-	font-size: 20px;
-	margin-top: 0;
+	#dwm h2 {
+		font-size: 18px;
+	}
+	#contents h1 {
+		font-size: 20px;
+		margin-top: 0;
+	}
 }
