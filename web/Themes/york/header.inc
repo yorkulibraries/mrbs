@@ -66,7 +66,8 @@ function print_theme_header($day, $month, $year, $area, $room)
 
   <!-- Optional theme -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-  
+
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   
   <?php
@@ -123,7 +124,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 	              </li>
 	            </ul>
 	          </li>
-		        <?php if ($is_admin) { ?>
+		        <?php if (empty($user) || $is_admin) { ?>
 	          <li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">
@@ -137,6 +138,11 @@ function print_theme_header($day, $month, $year, $area, $room)
 	          </li>
 	          <?php } ?>
 	        </ul>
+					<ul class="nav navbar-nav navbar-right">
+					  <li>
+					    <a role="menuitem" tabindex="-1" href="login"><span class="fa fa-sign-in"></span> <?php echo get_vocab("login"); ?></a>
+					  </li>
+					</ul>
 	      </div>
       </div>
     </nav>
