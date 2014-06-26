@@ -96,7 +96,6 @@ function print_theme_header($day, $month, $year, $area, $room)
             <span class="icon-bar"></span>
           </button>
           <a title="York University" href="http://www.yorku.ca/" class="navbar-brand"><img src="yib11yorklogo.gif" alt="York University"/></a>
-          <a title="York University Libraries" href="http://www.library.yorku.ca/" class="navbar-brand">Libraries</a>
         </div>
       </div>
     </nav>
