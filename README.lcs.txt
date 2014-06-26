@@ -33,5 +33,3 @@ $mysql -p -uroot databasename
 LOAD DATA INFILE '/tmp/frost_mrbs_room.csv' INTO TABLE mrbs_room FIELDS TERMINATED BY ',' (id,area_id,room_name,capacity);
 
 LOAD DATA INFILE '/tmp/frost_mrbs_entry.csv' INTO TABLE mrbs_entry FIELDS TERMINATED BY ',' (id,start_time,end_time,entry_type,repeat_id,room_id,create_by,name,type,description);
-
-
