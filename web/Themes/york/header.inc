@@ -84,7 +84,7 @@ function print_theme_header($day, $month, $year, $area, $room)
       //]]>
     </script> 
     
-    <a class="sr-only" href="#content">Skip to main content</a>
+    <a class="sr-only" href="#contents">Skip to main content</a>
 
     <nav class="navbar navbar-default yul-navbar" role="navigation">
       <div class="container">
@@ -101,13 +101,13 @@ function print_theme_header($day, $month, $year, $area, $room)
 				<div class="collapse navbar-collapse">
 	        <ul class="nav navbar-nav">
 						<li class="dropdown">
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab("areas"); ?> <span class="caret"></span></a>
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Libraries with Group Study Rooms <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">
-	              <li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=2">Peter F. Bronfman Business Library</a>
-	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="/rooms/frost/">Leslie Frost Library (Glendon Campus)</a>
+	              </li>
+								<li role="presentation">
+	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=2">Peter F. Bronfman Business Library</a>
 	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=1">Scott Library</a>
