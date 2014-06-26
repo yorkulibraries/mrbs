@@ -27,6 +27,9 @@ a:link {
 	#dwm h2 {
 		font-size: 16px;
 	}
+	#contents h1 {
+		font-size: 20px;
+	}
 }
 #contents h1 {
 	margin-top: 0;
