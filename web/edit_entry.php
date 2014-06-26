@@ -1,5 +1,5 @@
 <?php
-// $Id$
+// $Id: edit_entry.php 2824 2014-03-08 09:09:44Z cimorrison $
 
 // If you want to add some extra columns to the entry and repeat tables to
 // record extra details about bookings then you can do so and this page should
@@ -290,12 +290,12 @@ function create_field_entry_start_date($disabled=FALSE)
   echo "<div id=\"div_start_date\">\n";
   echo "<label>" . get_vocab("start") . ":</label>\n";
   echo "<div>\n"; // Needed so that the structure is the same as for the end date to help the JavaScript
-  gendateselector("start_", $date['mday'], $date['mon'], $date['year'], '', $disabled);
+  gendateselector("start_", $date['mday'], $date['mon'], $date['year'], '', $disabled=TRUE);
   echo "</div>\n";
 
   // Generate the live slot selector and all day checkbox
   genSlotSelector($areas[$area_id], 'start_seconds', 'start_seconds', $current_s, FALSE, $disabled, TRUE);
-  genAllDay($areas[$area_id], 'all_day', 'all_day', FALSE, $disabled);
+  genAllDay($areas[$area_id], 'all_day', 'all_day', FALSE, $disabled=FALSE);
   
   // Generate the templates for each area
   foreach ($areas as $a)
