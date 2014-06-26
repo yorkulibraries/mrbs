@@ -11,7 +11,7 @@
 // This file is PHP code. Treat it as such.
 
 // Used in style.inc
-$vocab["mrbs"]               = "Group Study Rooms";
+$vocab["mrbs"]               = "Meeting Room Booking System";
 
 // Used in functions.inc
 $vocab["report"]             = "Report";
