@@ -1,3 +1,15 @@
+How to setup an MRBS instance
+==========================================================
+git clone from git repo
+make appropriate changes to web/config.inc.php
+*** DO NOT commit local config changes
+
+How to update
+==============
+git stash
+git pull origin
+git stash pop
+
 COPY EXISTING BOOKINGS FROM OLD MRBS pre-1.4.10 NEW MRBS
 ==========================================================
 
@@ -10,9 +22,5 @@ POSTGRES SQL> copy (select id,start_time,end_time,entry_type,repeat_id,room_id,t
 MYSQL> LOAD DATA INFILE '/tmp/frost_mrbs_entry.csv' INTO TABLE mrbs_entry FIELDS TERMINATED BY ',' (id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description);
 
 * Create the new area and rooms in the new mrbs via admin application interface.
-
-* Update the old room_id with the new room_id. (Look this up in mrbs_room table)
-MYSQL> update mrbs_entry set room_id=2 where room_id=9;
-
-* Repeat previous step for all rooms
+* Set the newly created area/room id to same as the area/room id from the old MRBS (Look this up in mrbs_room table)
 
