@@ -51,13 +51,13 @@ $db_host = "localhost";
 // can uncomment the following line and specify the port number
 // $db_port = 1234;
 // Database name:
-$db_database = "mrbs";
+$db_database = "__CHANGE_THIS__";
 // Schema name.  This only applies to PostgreSQL and is only necessary if you have more
 // than one schema in your database and also you are using the same MRBS table names in
 // multiple schemas.
 //$db_schema = "public";
 // Database login user name:
-$db_login = "mrbs";
+$db_login = "__CHANGE_THIS__";
 // Database login password:
 $db_password = "password";
 // Prefix for table names.  This will allow multiple installations where only
