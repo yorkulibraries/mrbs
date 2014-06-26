@@ -100,6 +100,18 @@ function print_theme_header($day, $month, $year, $area, $room)
           <a class="navbar-brand" href="index.php"><?php echo get_vocab("mrbs") ?></a>
         </div>
 				<div class="collapse navbar-collapse">
+					<?php if (!empty($user)) { ?>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $user; ?> <span class="caret"></span></a>
+	            <ul class="dropdown-menu" role="menu">
+					  		<li>
+							    <a role="menuitem" tabindex="-1" href="<?php echo $auth['remote_user']['logout_link']; ?>"><span class="fa fa-sign-out"></span> <?php echo get_vocab("logoff"); ?></a>
+							  </li>
+							</ul>
+						</li>
+					</ul>
+					<?php } ?>
 	        <ul class="nav navbar-nav">
 						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Libraries with Group Study Rooms <span class="caret"></span></a>
@@ -138,11 +150,6 @@ function print_theme_header($day, $month, $year, $area, $room)
 	          </li>
 	          <?php } ?>
 	        </ul>
-					<ul class="nav navbar-nav navbar-right">
-					  <li>
-					    <a role="menuitem" tabindex="-1" href="login"><span class="fa fa-sign-in"></span> <?php echo get_vocab("login"); ?></a>
-					  </li>
-					</ul>
 	      </div>
       </div>
     </nav>
