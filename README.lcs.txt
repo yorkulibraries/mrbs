@@ -3,6 +3,8 @@ How to setup an MRBS instance
 git clone from git repo
 make appropriate changes to web/config.inc.php
 *** DO NOT commit local config changes
+create mysql database/user
+create database tables: mysql -p -u username database < tables.my.sql
 
 How to update
 ==============
@@ -21,6 +23,4 @@ POSTGRES SQL> copy (select id,start_time,end_time,entry_type,repeat_id,room_id,t
 
 MYSQL> LOAD DATA INFILE '/tmp/frost_mrbs_entry.csv' INTO TABLE mrbs_entry FIELDS TERMINATED BY ',' (id,start_time,end_time,entry_type,repeat_id,room_id,timestamp,create_by,name,type,description);
 
-* Create the new area and rooms in the new mrbs via admin application interface.
-* Set the newly created area/room id to same as the area/room id from the old MRBS (Look this up in mrbs_room table)
 
