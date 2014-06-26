@@ -74,7 +74,6 @@ $db_tbl_prefix = "mrbs_";
 $mrbs_admin = "Room Booking System";
 $mrbs_admin_email = '"Room Booking System" <mrbs@email.com>';
 $mrbs_company = "York University Libraries";
-$mrbs_company_url = "http://www.library.yorku.ca"; 
 
 $theme = "york";
 
