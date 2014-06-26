@@ -54,7 +54,7 @@ function print_theme_header($day, $month, $year, $area, $room)
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title><?php echo get_vocab("mrbs") ?> | <?php echo get_vocab("York University Libraries") ?></title>
+  <title><?php echo get_vocab("mrbs") ?> | York University Libraries</title>
   
   <?php
   require_once "style.inc";
@@ -142,6 +142,7 @@ function print_theme_header($day, $month, $year, $area, $room)
     </nav>
 
 <div id="contents" class="container">
+	<h1><?php echo get_vocab('pagetitle'); ?></h1>
 <?php
 
 } // end of print_theme_header()

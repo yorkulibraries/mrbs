@@ -71,8 +71,8 @@ $db_tbl_prefix = "mrbs_";
    to change the default configuration. Do _NOT_ modify systemdefaults.inc.php
    or areadefaults.inc.php.  */
 
-$mrbs_admin = "Room Booking System";
-$mrbs_admin_email = '"Room Booking System" <mrbs@email.com>';
+$mrbs_admin = "Group Study Rooms";
+$mrbs_admin_email = '"Group Study Rooms" <mrbs@email.com>';
 $mrbs_company = "York University Libraries";
 
 $theme = "york";
@@ -100,3 +100,12 @@ $auth['only_admin_can_select_multiroom'] = TRUE;
 $max_duration_enabled = TRUE; // Set to TRUE if you want to enforce a maximum duration
 $max_duration_secs = 60*60*3;  // (seconds) - when using "times"
 
+// language override
+$vocab_override['en']['mrbs'] = "Group Study Rooms";
+$vocab_override['en']['daybefore'] = "Previous";
+$vocab_override['en']['dayafter'] = "Next";
+$vocab_override['en']['gototoday'] = "Today";
+
+// york added language strings
+$vocab_override['en']['pagetitle'] = "Library Name";
+$vocab_override['fr']['pagetitle'] = "Library Name";

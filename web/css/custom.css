@@ -1,9 +1,6 @@
 table#colour_key {
     display: none;
 }
-div.date_nav {
-    display: none;
-}
 body {
     padding-bottom: 70px;
 }
@@ -24,4 +21,14 @@ a:link {
   .yul-navbar .navbar-brand img {
     margin-left: -90px;
   }
+	#dwm_header {
+		display: none;
+	}
+}
+#dwm h2 {
+	font-size: 18px;
+}
+#contents h1 {
+	font-size: 20px;
+	margin-top: 0;
 }
