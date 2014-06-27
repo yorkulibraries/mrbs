@@ -20,6 +20,7 @@ function getUserName()
   } 
   else
   {
+	  $_SESSION['REMOTE_USER'] = $_SERVER['REMOTE_USER'];
     return $_SERVER['REMOTE_USER'];
   }
 }
