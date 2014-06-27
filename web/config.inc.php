@@ -112,3 +112,20 @@ $vocab_override['en']['gototoday'] = "Today";
 // york added language strings
 $vocab_override['en']['pagetitle'] = "Library Name";
 $vocab_override['fr']['pagetitle'] = "Library Name";
+$vocab_override['en']['fr'] = 'Français';
+$vocab_override['en']['en'] = 'English';
+$vocab_override['fr']['fr'] = 'Français';
+$vocab_override['fr']['en'] = 'English';
+
+// don't change language based on browser setttings
+$disable_automatic_language_changing = true;
+
+// take language code from $_REQUEST or $_SESSION
+session_start();
+$default_language_tokens = 'en';
+if (isset($_REQUEST['mylang']) && in_array($_REQUEST['mylang'], array('en', 'fr'))) {
+	$default_language_tokens = $_REQUEST['mylang'];
+} else if (isset($_SESSION['mylang']) && in_array($_SESSION['mylang'], array('en', 'fr'))) {
+	$default_language_tokens = $_SESSION['mylang'];
+}
+$_SESSION['mylang'] = $default_language_tokens;
