@@ -106,6 +106,8 @@ $vocab_override['en']['mrbs'] = "Group Study Rooms";
 $vocab_override['en']['daybefore'] = "Previous";
 $vocab_override['en']['dayafter'] = "Next";
 $vocab_override['en']['gototoday'] = "Today";
+$vocab_override['en']['fulldescription'] = 'Full description:';
+$vocab_override['fr']['fulldescription'] = 'Description complète:';
 
 // york added language strings
 $vocab_override['en']['pagetitle'] = "Library Name";
