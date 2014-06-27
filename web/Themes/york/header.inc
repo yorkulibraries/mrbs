@@ -101,6 +101,7 @@ function print_theme_header($day, $month, $year, $area, $room)
         </div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
+						<?php if ($is_admin) { ?>
 						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">
@@ -112,11 +113,17 @@ function print_theme_header($day, $month, $year, $area, $room)
 	              </li>
 	            </ul>
 	          </li>
+	          <?php } ?>
+	          <?php if (empty($user)) { ?>
+	          <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="login.php"><span class="fa fa-sign-in"></span> <?php echo get_vocab('login'); ?></a>
+            </li>
+            <?php } ?>
 						<?php if (!empty($user)) { ?>
 						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $user; ?> <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">
-					  		<li>
+					  		<li role="presentation">
 							    <a role="menuitem" tabindex="-1" href="<?php echo $auth['remote_user']['logout_link']; ?>"><span class="fa fa-sign-out"></span> <?php echo get_vocab("logoff"); ?></a>
 							  </li>
 							</ul>
