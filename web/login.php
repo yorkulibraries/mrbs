@@ -1,5 +1,6 @@
 <?php
-session_start();
+require "defaultincludes.inc";
+
 if ((isset($_SERVER['REMOTE_USER'])) &&
     (is_string($_SERVER['REMOTE_USER'])) &&
     (!empty($_SERVER['REMOTE_USER'])))

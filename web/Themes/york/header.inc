@@ -124,7 +124,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $user; ?> <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">
 					  		<li role="presentation">
-							    <a role="menuitem" tabindex="-1" href="<?php echo $auth['remote_user']['logout_link']; ?>"><span class="fa fa-sign-out"></span> <?php echo get_vocab("logoff"); ?></a>
+							    <a role="menuitem" tabindex="-1" href="logout.php"><span class="fa fa-sign-out"></span> <?php echo get_vocab("logoff"); ?></a>
 							  </li>
 							</ul>
 						</li>
