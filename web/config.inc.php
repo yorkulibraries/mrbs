@@ -97,9 +97,6 @@ $auth['only_admin_can_book_repeat'] = TRUE;
 $auth['only_admin_can_book_multiday'] = TRUE;
 $auth['only_admin_can_select_multiroom'] = TRUE;
 
-// logout link 
-$auth['remote_user']['logout_link'] = 'logout.php';
-
 // Set a maximum duration for bookings
 $max_duration_enabled = TRUE; // Set to TRUE if you want to enforce a maximum duration
 $max_duration_secs = 60*60*3;  // (seconds) - when using "times"
