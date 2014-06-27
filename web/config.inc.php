@@ -98,7 +98,7 @@ $auth['only_admin_can_book_multiday'] = TRUE;
 $auth['only_admin_can_select_multiroom'] = TRUE;
 
 // logout link 
-$auth['remote_user']['logout_link'] = 'https://passportyork.yorku.ca/ppylogin/ppylogout';
+$auth['remote_user']['logout_link'] = 'logout.php';
 
 // Set a maximum duration for bookings
 $max_duration_enabled = TRUE; // Set to TRUE if you want to enforce a maximum duration
