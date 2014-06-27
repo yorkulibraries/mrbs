@@ -20,7 +20,10 @@ function getUserName()
   } 
   else
   {
+<<<<<<< HEAD
 	  $_SESSION['REMOTE_USER'] = $_SERVER['REMOTE_USER'];
+=======
+>>>>>>> added missing auth files
     return $_SERVER['REMOTE_USER'];
   }
 }
