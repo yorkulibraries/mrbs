@@ -827,8 +827,8 @@ if (isset($change_area) &&!empty($area))
   echo "<legend>" . get_vocab("editarea") . "</legend>\n";
   
   // Any error messages
-  echo "<fieldset>\n";
-  echo "<legend></legend>\n";
+  //echo "<fieldset>\n";
+  //echo "<legend></legend>\n";
   if (FALSE == $valid_email)
   {
     echo "<p class=\"error\">" .get_vocab('invalid_email') . "</p>\n";
@@ -841,7 +841,7 @@ if (isset($change_area) &&!empty($area))
   {
     echo "<p class=\"error\">" .get_vocab('too_many_slots') . "</p>\n";
   }
-  echo "</fieldset>\n";
+  //echo "</fieldset>\n";
   
   echo "<fieldset>\n";
   echo "<legend>" . get_vocab("general_settings") . "</legend>\n";
