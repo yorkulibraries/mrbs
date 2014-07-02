@@ -17,8 +17,36 @@ a:link {
 .yul-navbar .navbar-brand img {
   margin-top: -15px;
 }
+#contents h1 {
+	margin-top: 0;
+}
+#day_main thead tr th {
+	text-align: center;
+}
+.form_general {
+	min-width: 0 !important;
+}
+label.radio {
+	margin-top: 0 !important;
+	margin-left: 1em;
+}
+#edit_area #time_settings {
+	display: none !important;
+}
+
+.edit_entry #div_rooms, .edit_entry #div_areas, .edit_entry #div_type, .edit_entry #end_datepicker {
+	display: none !important;
+}
+
+.edit_entry #rep_type {
+	border-right: none;
+}
+.edit_entry #skip {
+	margin-left: 1em;
+}
+
 @media (max-width: 480px) {
-  .yul-navbar .navbar-brand img {
+	.yul-navbar .navbar-brand img {
     margin-left: -90px;
   }
 	#dwm_header {
@@ -30,15 +58,6 @@ a:link {
 	#contents h1 {
 		font-size: 20px;
 	}
-}
-#contents h1 {
-	margin-top: 0;
-}
-#day_main thead tr th {
-	text-align: center;
-}
-
-@media (max-width: 480px) {
 	.form_general label {
 		display: block;
 		float: none;

@@ -31,7 +31,6 @@ print_header($day, $month, $year, isset($area) ? $area : "", isset($room) ? $roo
     fatal_error(0, get_vocab("error_area") . $area . get_vocab("not_found"));
   }
   if (sql_row_keyed($res) == 0) {
-    echo "<h3> Generating default values for new area! </h3>\n";
     for($i=1; $i<8; $i++) {
 
         $sql = "INSERT INTO mrbs_area_hours ". 
@@ -173,3 +172,5 @@ print_header($day, $month, $year, isset($area) ? $area : "", isset($room) ? $roo
     </fieldset>
   </form>
 </div>
+
+<?php output_trailer(); ?>
