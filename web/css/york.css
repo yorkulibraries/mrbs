@@ -26,12 +26,19 @@ a:link {
 .form_general {
 	min-width: 0 !important;
 }
-label.radio {
+.form_general label.radio {
 	margin-top: 0 !important;
 	margin-left: 1em;
 }
-#edit_area #time_settings {
+.form_general fieldset {
+	padding-top: 0 !important;
+	padding-left: 0 !important;
+}
+.edit_area #time_settings {
 	display: none !important;
+}
+.edit_area_room .form_general fieldset fieldset legend {
+    font-size: inherit;
 }
 
 .edit_entry #div_rooms, .edit_entry #div_areas, .edit_entry #div_type, .edit_entry #end_datepicker {
