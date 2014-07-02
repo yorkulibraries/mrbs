@@ -113,6 +113,8 @@ $vocab_override['en']['fr'] = 'Français';
 $vocab_override['en']['en'] = 'English';
 $vocab_override['fr']['fr'] = 'Français';
 $vocab_override['fr']['en'] = 'English';
+$vocab_override['en']['areahours'] = 'Area Hours';
+$vocab_override['fr']['areahours'] = 'Area Hours';
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;
