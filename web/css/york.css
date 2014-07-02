@@ -58,3 +58,8 @@ a:link {
 .form_general {
 	min-width: 0 !important;
 }
+
+#edit_area #time_settings {
+	display: none !important;
+}
+

@@ -77,9 +77,6 @@ $mrbs_company = "York University Libraries";
 
 $theme = "york";
 
-// Use the $custom_css_url to override the standard MRBS CSS.
-$custom_css_url = 'css/custom.css';
-
 $auth["type"] = "none";
 
 // How to get and keep the user ID.
