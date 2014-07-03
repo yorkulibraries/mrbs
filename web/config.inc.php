@@ -117,6 +117,8 @@ $vocab_override['en']['areahours'] = 'Area Hours';
 $vocab_override['fr']['areahours'] = 'Area Hours';
 $vocab_override['en']['frostlibrary'] = 'Frost Library';
 $vocab_override['fr']['frostlibrary'] = 'Bibliothèque Leslie Frost';
+$vocab_override['en']['libraries_with_study_rooms'] = "Libraries with Group Study Rooms";
+$vocab_override['fr']['libraries_with_study_rooms'] = "Bibliothèques avec salles d'études";
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;
