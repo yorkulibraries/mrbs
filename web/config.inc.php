@@ -100,6 +100,7 @@ $max_duration_secs = 60*60*3;  // (seconds) - when using "times"
 
 // language override
 $vocab_override['en']['mrbs'] = "Group Study Rooms";
+$vocab_override['fr']['mrbs'] = "Salles d'études";
 $vocab_override['en']['daybefore'] = "Previous";
 $vocab_override['en']['dayafter'] = "Next";
 $vocab_override['en']['gototoday'] = "Today";
