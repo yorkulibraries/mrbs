@@ -115,6 +115,8 @@ $vocab_override['fr']['fr'] = 'Français';
 $vocab_override['fr']['en'] = 'English';
 $vocab_override['en']['areahours'] = 'Area Hours';
 $vocab_override['fr']['areahours'] = 'Area Hours';
+$vocab_override['en']['frostlibrary'] = 'Frost Library';
+$vocab_override['fr']['frostlibrary'] = 'Bibliothèque Leslie Frost';
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;
