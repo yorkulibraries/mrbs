@@ -81,7 +81,15 @@ a:link {
 		margin: 0 0 10px 0;
 	}
 }
-.form_general {
+
+@media print {
+	nav {
+		display: none !important;
+	}
+	body a.sr-only:nth-of-type(1) {
+		display: none !important;
+	}
+}.form_general {
 	min-width: 0 !important;
 }
 #contents h1 {
