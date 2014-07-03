@@ -12,6 +12,12 @@ git stash
 git pull origin master
 git stash pop
 
+Integrating changes from upstream (ie: from sourceforge svn trunk)
+====================================================================
+git stash
+git svn rebase
+git stash pop
+
 COPY EXISTING BOOKINGS FROM OLD MRBS pre-1.4.10 NEW MRBS
 ==========================================================
 
