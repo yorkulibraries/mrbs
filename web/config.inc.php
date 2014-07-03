@@ -119,6 +119,8 @@ $vocab_override['en']['frostlibrary'] = 'Frost Library';
 $vocab_override['fr']['frostlibrary'] = 'Bibliothèque Leslie Frost';
 $vocab_override['en']['libraries_with_study_rooms'] = "Libraries with Group Study Rooms";
 $vocab_override['fr']['libraries_with_study_rooms'] = "Bibliothèques avec salles d'études";
+$vocab_override['en']['group_study_rooms'] = "Group Study Rooms";
+$vocab_override['fr']['group_study_rooms'] = "Salles d'études";
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;
