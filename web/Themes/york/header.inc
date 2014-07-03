@@ -100,7 +100,7 @@ function print_theme_header($day, $month, $year, $area, $room)
             <span class="icon-bar"></span>
           </button>
           <a title="York University" href="http://www.yorku.ca/" class="navbar-brand"><img src="yib11yorklogo.gif" alt="York University"/></a>
-          <a class="navbar-brand" href="index.php"><?php echo get_vocab("mrbs") ?></a>
+          <a class="navbar-brand" href="index.php"><?php echo get_vocab("group_study_rooms") ?></a>
         </div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
