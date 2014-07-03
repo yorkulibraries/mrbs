@@ -129,4 +129,5 @@ if (isset($_REQUEST['mylang']) && in_array($_REQUEST['mylang'], array('en', 'fr'
 } else if (isset($_SESSION['mylang']) && in_array($_SESSION['mylang'], array('en', 'fr'))) {
 	$default_language_tokens = $_SESSION['mylang'];
 }
+$override_locale = $default_language_tokens . '_CA.UTF-8';
 $_SESSION['mylang'] = $default_language_tokens;
