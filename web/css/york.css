@@ -56,7 +56,7 @@ a:link {
 	.yul-navbar .navbar-brand img {
     margin-left: -90px;
   }
-	#dwm_header {
+	#dwm_header #cals {
 		display: none;
 	}
 	#dwm h2 {
