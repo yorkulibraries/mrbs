@@ -52,6 +52,10 @@ a:link {
 	margin-left: 1em;
 }
 
+#simple_trailer {
+	padding: 0;
+}
+
 @media (max-width: 480px) {
 	.yul-navbar .navbar-brand img {
     margin-left: -90px;
