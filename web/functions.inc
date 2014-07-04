@@ -2056,7 +2056,7 @@ function make_area_select_html($link, $current, $year, $month, $day)
   if ($res  && (sql_count($res) > 1))
   {
     $out_html .= "<div id=\"dwm_areas\">\n";
-    $out_html .= "<h3>" . get_vocab("areas") . "</h3>\n";
+    $out_html .= "<h2>" . get_vocab("areas") . "</h2>\n";
     if ($area_list_format == "select")
     {
       $out_html .= "<form id=\"areaChangeForm\" method=\"get\" action=\"$link\">\n" .
@@ -2111,7 +2111,7 @@ function make_room_select_html ($link, $area, $current, $year, $month, $day)
   if ($res && (sql_count($res) > 1))
   {
     $out_html .= "<div id=\"dwm_rooms\">\n";
-    $out_html .= "<h3>" . get_vocab("rooms") . "</h3>";
+    $out_html .= "<h2>" . get_vocab("rooms") . "</h2>";
     if ($area_list_format == "select")
     {
       $out_html .= "<form id=\"roomChangeForm\" method=\"get\" action=\"$link\">\n" .
