@@ -136,3 +136,8 @@ if (isset($_REQUEST['mylang']) && in_array($_REQUEST['mylang'], array('en', 'fr'
 }
 $override_locale = $default_language_tokens . '_CA.UTF-8';
 $_SESSION['mylang'] = $default_language_tokens;
+
+// Trailer type.   FALSE gives a trailer complete with links to days, weeks and months before
+// and after the current date.    TRUE gives a simpler trailer that just has links to the
+// current day, week and month.
+$simple_trailer = TRUE;
