@@ -63,8 +63,9 @@ a:link {
 	#dwm_header #cals {
 		display: none;
 	}
-	#dwm h2 {
+	#dwm h2, #dwm_header h2 {
 		font-size: 16px;
+		margin-top: 0;
 	}
 	#contents h1 {
 		font-size: 20px;
