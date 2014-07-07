@@ -1709,6 +1709,7 @@ function get_area_settings($area)
       $$key = $value;
     }
   }
+  override_area_hours($area);
   // Set the timezone
   mrbs_default_timezone_set($timezone);
   

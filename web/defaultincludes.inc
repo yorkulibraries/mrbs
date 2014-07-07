@@ -5,7 +5,7 @@
 // We use require for some files rather than require_once because the values that
 // are assigned to variables will change depending on the context in which the file
 // is called.
-
+require_once "york_functions.php";
 require "grab_globals.inc.php";
 require_once "systemdefaults.inc.php";
 require_once "areadefaults.inc.php";
