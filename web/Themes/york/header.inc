@@ -127,24 +127,6 @@ function print_theme_header($day, $month, $year, $area, $room)
             <?php } ?>
 						<?php if (!empty($user)) { ?>
 						<li class="dropdown">
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
-	            <ul class="dropdown-menu" role="menu">
-	              <li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="admin.php"><?php echo get_vocab("rooms"); ?></a>
-	              </li>
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="report.php"><?php echo get_vocab("report"); ?></a>
-	              </li>
-	            </ul>
-	          </li>
-	          <?php } ?>
-	          <?php if (empty($user)) { ?>
-	          <li role="presentation">
-              <a role="menuitem" tabindex="-1" href="login.php"><span class="fa fa-sign-in"></span> <?php echo get_vocab('login'); ?></a>
-            </li>
-            <?php } ?>
-						<?php if (!empty($user)) { ?>
-						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user"></span> <?php echo $user; ?> <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">
 					  		<li role="presentation">
@@ -154,6 +136,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 						</li>
 						<?php } ?>
 					</ul>
+					
 	        <ul class="nav navbar-nav">
 						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab($default_language_tokens); ?> <span class="caret"></span></a>
