@@ -122,6 +122,8 @@ $vocab_override['en']['libraries_with_study_rooms'] = "Libraries with Group Stud
 $vocab_override['fr']['libraries_with_study_rooms'] = "Bibliothèques avec salles d'études";
 $vocab_override['en']['group_study_rooms'] = "Group Study Rooms";
 $vocab_override['fr']['group_study_rooms'] = "Salles d'études";
+$vocab_override['en']['area_is_closed'] = "This area is closed.";
+$vocab_override['fr']['area_is_closed'] = "This area is closed.";
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;

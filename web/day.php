@@ -107,11 +107,15 @@ $before_after_links_html = "
 </div>\n";
 
 // and output them
-echo $before_after_links_html;
+if ($area_is_closed) {
+	echo '<div class="alert alert-danger" role="alert">' . get_vocab('area_is_closed') . '</div>';
+} else {
+	echo $before_after_links_html;
 
-echo "<table class=\"dwm_main\" id=\"day_main\" data-resolution=\"$resolution\">\n";
-echo $inner_html;
-echo "</table>\n";
+	echo "<table class=\"dwm_main\" id=\"day_main\" data-resolution=\"$resolution\">\n";
+	echo $inner_html;
+	echo "</table>\n";
+}
   
 echo $before_after_links_html;
 
