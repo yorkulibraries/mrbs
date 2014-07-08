@@ -14,9 +14,19 @@ git stash pop
 
 Integrating changes from upstream (ie: from sourceforge svn trunk)
 ====================================================================
-git stash
+* Add the following to .git/config (only need to do this the first time)
+[svn-remote "svn"]
+	url = svn://svn.code.sf.net/p/mrbs/code/mrbs/trunk
+	fetch = :refs/remotes/svn/git-svn
+* Then create a branch tracking upstream (only need to do this the first time)
+git svn fetch
+git checkout -b svntrunk refs/remotes/svn/git-svn
+* Then, everytime we need to incorporate upstream changes
+git checkout svntrunk
 git svn rebase
-git stash pop
+git checkout master
+git merge svntrunk
+
 
 COPY EXISTING BOOKINGS FROM OLD MRBS pre-1.4.10 NEW MRBS
 ==========================================================
