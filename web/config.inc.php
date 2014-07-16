@@ -144,12 +144,11 @@ $_SESSION['mylang'] = $default_language_tokens;
 // current day, week and month.
 $simple_trailer = TRUE;
 
+// set $url_base so links in email notifications will work
+$url_base = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['REQUEST_URI']);
+
 // Mail settings
-$mail_settings['admin_on_bookings']      = FALSE;  // the addresses defined by $mail_settings['recipients'] below
-$mail_settings['area_admin_on_bookings'] = TRUE;  // the area administrator
-$mail_settings['room_admin_on_bookings'] = FALSE;  // the room administrator
-$mail_settings['booker']                 = FALSE;  // the person making the booking
-$mail_settings['book_admin_on_approval'] = FALSE;   // the booking administrator when booking approval is enabled
+$mail_settings['area_admin_on_bookings'] = TRUE;
 $mail_settings['details'] = TRUE;
 $mail_settings['from'] = 'no-reply@yorku.ca';
 $mail_settings['recipients'] = '';
