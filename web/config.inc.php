@@ -143,3 +143,14 @@ $_SESSION['mylang'] = $default_language_tokens;
 // and after the current date.    TRUE gives a simpler trailer that just has links to the
 // current day, week and month.
 $simple_trailer = TRUE;
+
+// Mail settings
+$mail_settings['admin_on_bookings']      = FALSE;  // the addresses defined by $mail_settings['recipients'] below
+$mail_settings['area_admin_on_bookings'] = FALSE;  // the area administrator
+$mail_settings['room_admin_on_bookings'] = FALSE;  // the room administrator
+$mail_settings['booker']                 = FALSE;  // the person making the booking
+$mail_settings['book_admin_on_approval'] = TRUE;   // the booking administrator when booking approval is enabled
+$mail_settings['details'] = TRUE;
+$mail_settings['from'] = 'no-reply@yorku.ca';
+$mail_settings['recipients'] = 'admin_email@your.org';
+
