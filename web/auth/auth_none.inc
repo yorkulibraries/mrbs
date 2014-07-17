@@ -46,7 +46,7 @@ function authValidateUser($user, $pass)
  */
 function authGetUserLevel($user)
 {
-  global $auth;
+  global $auth, $area;
   $admins = $auth['admin'];
   // User not logged in, user level '0'
   if (!isset($user))
@@ -63,6 +63,18 @@ function authGetUserLevel($user)
     }
   }
 
+  // check user group
+  if (empty($area)) {
+    $area = get_default_area();
+  }
+  $area_name = get_area_name($area);
+  if (!empty($area_name) && isset($auth['allowed_user_groups'][$area_name]) && !empty($auth['allowed_user_groups'][$area_name])) {
+    $ug = get_user_group();
+    if (!empty($ug) && !in_array($ug, $auth['allowed_user_groups'][$area_name])) {
+      return 0;
+    }
+  }
+    
   // Everybody else is access level '1'
   return 1;
 }
