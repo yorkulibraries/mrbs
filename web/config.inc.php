@@ -110,8 +110,12 @@ $vocab_override['en']['gototoday'] = "Today";
 $vocab_override['en']['fulldescription'] = 'Full description:';
 $vocab_override['fr']['fulldescription'] = 'Description complète:';
 
-$vocab_override['en']["mail_subject_new_entry"]     = "Entry added for Group Study Rooms";
-$vocab_override['en']["mail_subject_changed_entry"] = "Entry changed for Group Study Rooms";
+$vocab_override['en']["mail_subject_new_entry"]     = "New booking for Group Study Rooms";
+$vocab_override['en']["mail_subject_changed_entry"] = "Booking changed for Group Study Rooms";
+$vocab_override['en']["mail_subject_approved"]  = "Entry approved for Group Study Rooms";
+$vocab_override['en']["mail_subject_rejected"]  = "Entry rejected for Group Study Rooms";
+$vocab_override['en']["mail_subject_more_info"] = "Group Study Rooms: more information requested";
+$vocab_override['en']["mail_subject_reminder"]  = "Reminder for Group Study Rooms";
 
 // york added language strings
 $vocab_override['en']['pagetitle'] = "Library Name";
