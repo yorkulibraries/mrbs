@@ -21,6 +21,11 @@ function getUserName()
   else
   {
 	  $_SESSION['REMOTE_USER'] = $_SERVER['REMOTE_USER'];
+	  foreach ($_SERVER as $key => $val) {
+	    if (strpos($key, 'HTTP_PYORK_') !== false) {
+	      $_SESSION[$key] = $val;
+	    }
+	  }
     return $_SERVER['REMOTE_USER'];
   }
 }
