@@ -170,6 +170,9 @@ function print_theme_header($day, $month, $year, $area, $room)
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=5">Steacie Science &amp; Engineering Library</a>
 	              </li>
+	              <li role="presentation">
+	                <a role="menuitem" tabindex="-1" href="http://rooms.library.osgoode.yorku.ca/">Osgoode Hall Law School Library</a>
+	              </li>
 	            </ul>
 	          </li>
 	        </ul>
