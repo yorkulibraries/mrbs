@@ -95,7 +95,7 @@ $auth['only_admin_can_book_multiday'] = TRUE;
 $auth['only_admin_can_select_multiroom'] = TRUE;
 
 // types of users allowed to book (by area), empty means ANYONE can book
-$auth['allowed_user_groups']['Group Study Room'] = array('UNDERGRAD:STUDENT', 'GRAD:STUDENT', 'NONDEG:STUDENT');
+$auth['allowed_user_groups']['Group Study Rooms'] = array('UNDERGRAD:STUDENT', 'GRAD:STUDENT', 'NONDEG:STUDENT');
 
 // Set a maximum duration for bookings
 $max_duration_enabled = TRUE; // Set to TRUE if you want to enforce a maximum duration
