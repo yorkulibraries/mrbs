@@ -110,6 +110,9 @@ $vocab_override['en']['gototoday'] = "Today";
 $vocab_override['en']['fulldescription'] = 'Full description:';
 $vocab_override['fr']['fulldescription'] = 'Description complète:';
 
+$vocab_override['en']["mail_subject_new_entry"]     = "Entry added for Group Study Rooms";
+$vocab_override['en']["mail_subject_changed_entry"] = "Entry changed for Group Study Rooms";
+
 // york added language strings
 $vocab_override['en']['pagetitle'] = "Library Name";
 $vocab_override['fr']['pagetitle'] = "Library Name";
