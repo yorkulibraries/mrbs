@@ -39,4 +39,18 @@ function override_area_hours($area) {
 		}
 	}
 }
+
+function get_user_group() {
+    return isset($_SESSION['HTTP_PYORK_TYPE']) ? $_SESSION['HTTP_PYORK_TYPE'] : null;  
+}
+
+function get_area_name($room) {
+    $sql = "select area_name from mrbs_room r, mrbs_area a where r.area_id=a.id and r.id=$room";
+	$res = sql_query($sql);
+	if ($res) {
+	    $row = sql_row_keyed($res, 0);
+	    return $row['area_name'];
+    }
+    return null;
+}
 ?>
