@@ -10,10 +10,11 @@ function override_area_hours($area) {
         $dow = date('N', mktime(0,0,0,$month,$day,$year));
     }
     
-    // check if area is closed today
-    $sql = "select * from mrbs_closed_dates where closed_date=CURDATE() and area_id=$area";
+    // check if area is closed on the given date
+    $date = date('Y-m-d', mktime(0,0,0,$month,$day,$year));
+    $sql = "select * from mrbs_closed_dates where closed_date='$date' and area_id=$area";
     $res = sql_query($sql);
-    if ($res) {
+    if (sql_count($res) > 0) {
       area_closed();
       return;
     }
