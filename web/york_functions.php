@@ -1,6 +1,6 @@
 <?php
 function override_area_hours($area) {
-    global $morningstarts, $morningstarts_minutes, $eveningends, $eveningends_minutes, $resolution;
+    global $morningstarts, $morningstarts_minutes, $eveningends, $eveningends_minutes;
     global $day, $month, $year;
   
      // calculate selected day of the week
@@ -8,6 +8,14 @@ function override_area_hours($area) {
         $dow = date('N', mktime(0,0,0,date('n'),date('j'),date('Y')));
     } else {
         $dow = date('N', mktime(0,0,0,$month,$day,$year));
+    }
+    
+    // check if area is closed today
+    $sql = "select * from mrbs_closed_dates where closed_date=CURDATE() and area_id=$area";
+    $res = sql_query($sql);
+    if ($res) {
+      area_closed();
+      return;
     }
 
     if (strrpos($_SERVER['REQUEST_URI'], 'week.php') !== false) {
@@ -33,11 +41,16 @@ function override_area_hours($area) {
         }
         if ($morningstarts == 0 && $morningstarts_minutes == 0 
             && $eveningends == 0 && $eveningends_minutes == 0) {
-            $resolution = 1000000 * SECONDS_PER_DAY;
-            global $area_is_closed;
-            $area_is_closed = true;
+            area_closed();
         }
     }
+}
+
+function area_closed() {
+  global $resolution, $area_is_closed;
+  
+  $resolution = 1000000 * SECONDS_PER_DAY;
+  $area_is_closed = true;
 }
 
 function get_user_group() {

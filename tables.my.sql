@@ -177,7 +177,13 @@ CREATE TABLE mrbs_area_hours
   eveningends               int,
   eveningends_minutes       int,
   dayoftheweek	            int,
-PRIMARY KEY (id)
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
- 
+CREATE TABLE mrbs_closed_dates
+(
+  id                        int NOT NULL auto_increment,
+  area_id                   int,
+  closed_date               date,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
