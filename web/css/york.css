@@ -55,7 +55,7 @@ a:link {
 #simple_trailer {
 	padding: 0;
 }
-a.booking-rules {
+a.booking-rules, a.booking-rules:active, a.booking-rules:visited, a.booking-rules:hover {
     color: #cc0000;
     cursor: pointer;
     font-size: 16px;
