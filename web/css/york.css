@@ -55,7 +55,9 @@ a:link {
 #simple_trailer {
 	padding: 0;
 }
-
+#dwm_rooms {
+    display: none;
+}
 @media (max-width: 480px) {
 	.yul-navbar .navbar-brand img {
     margin-left: -90px;
