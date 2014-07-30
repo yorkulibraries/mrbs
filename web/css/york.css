@@ -61,6 +61,10 @@ a.booking-rules, a.booking-rules:active, a.booking-rules:visited, a.booking-rule
     font-size: 16px;
     font-weight: normal;
 }
+#dwm h2, #dwm_header h2 {
+	font-size: 16px;
+	margin-top: 0;
+}
 @media (max-width: 480px) {
 	.yul-navbar .navbar-brand img {
     margin-left: -90px;
