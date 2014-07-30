@@ -59,6 +59,7 @@ a.booking-rules, a.booking-rules:active, a.booking-rules:visited, a.booking-rule
     color: #cc0000;
     cursor: pointer;
     font-size: 16px;
+    font-weight: normal;
 }
 @media (max-width: 480px) {
 	.yul-navbar .navbar-brand img {
