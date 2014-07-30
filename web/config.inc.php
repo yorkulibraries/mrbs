@@ -134,6 +134,8 @@ $vocab_override['en']['group_study_rooms'] = "Group Study Rooms";
 $vocab_override['fr']['group_study_rooms'] = "Salles d'études";
 $vocab_override['en']['area_is_closed'] = "This area is closed.";
 $vocab_override['fr']['area_is_closed'] = "This area is closed.";
+$vocab_override['en']['area_list'] = 'Areas';
+$vocab_override['fr']['area_list'] = 'Areas';
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;

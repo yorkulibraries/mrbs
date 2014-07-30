@@ -2057,7 +2057,7 @@ function make_area_select_html($link, $current, $year, $month, $day)
   if ($res  && (sql_count($res) > 1))
   {
     $out_html .= "<div id=\"dwm_areas\">\n";
-    $out_html .= "<h2>" . get_vocab("areas") . "</h2>\n";
+    $out_html .= "<h2>" . get_vocab("area_list") . "</h2>\n";
     if ($area_list_format == "select")
     {
       $out_html .= "<form id=\"areaChangeForm\" method=\"get\" action=\"$link\">\n" .
