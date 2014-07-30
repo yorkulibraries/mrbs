@@ -156,7 +156,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 	                <a role="menuitem" tabindex="-1" href="/rooms/frost/">Leslie Frost Library (Glendon Campus)</a>
 	              </li>
 								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=2">Peter F. Bronfman Business Library</a>
+	                <a role="menuitem" tabindex="-1" href="/rooms/bronfman/">Peter F. Bronfman Business Library</a>
 	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=1">Scott Library</a>
@@ -168,7 +168,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 	                <a role="menuitem" tabindex="-1" href="/rooms/smil/">Sound and Moving Image Library</a>
 	              </li>
 								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=5">Steacie Science &amp; Engineering Library</a>
+	                <a role="menuitem" tabindex="-1" href="/rooms/steacie/">Steacie Science &amp; Engineering Library</a>
 	              </li>
 	              <li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="http://rooms.library.osgoode.yorku.ca/">Osgoode Hall Law School Library</a>
