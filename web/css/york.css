@@ -55,9 +55,6 @@ a:link {
 #simple_trailer {
 	padding: 0;
 }
-#dwm_rooms {
-    display: none;
-}
 a.booking-rules {
     color: #cc0000;
     cursor: pointer;
