@@ -136,6 +136,8 @@ $vocab_override['en']['area_is_closed'] = "This area is closed.";
 $vocab_override['fr']['area_is_closed'] = "This area is closed.";
 $vocab_override['en']['area_list'] = 'Areas';
 $vocab_override['fr']['area_list'] = 'Areas';
+$vocab_override['en']['booking_rules'] = 'Booking Rules';
+$vocab_override['fr']['booking_rules'] = 'Booking Rules';
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;

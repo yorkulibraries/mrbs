@@ -58,6 +58,11 @@ a:link {
 #dwm_rooms {
     display: none;
 }
+a.booking-rules {
+    color: #cc0000;
+    cursor: pointer;
+    font-size: 16px;
+}
 @media (max-width: 480px) {
 	.yul-navbar .navbar-brand img {
     margin-left: -90px;

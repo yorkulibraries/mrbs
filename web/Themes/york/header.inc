@@ -182,6 +182,24 @@ function print_theme_header($day, $month, $year, $area, $room)
 
 <div id="contents" class="container">
 	<h1><?php echo get_vocab('pagetitle'); ?></h1>
+	<p><a class="booking-rules" data-toggle="modal" data-target="#booking_rules"><?php echo get_vocab('booking_rules'); ?></a></p>
+  <!-- Modal -->
+  <div class="modal fade" id="booking_rules" tabindex="-1" role="dialog" aria-labelledby="booking_rules_label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="booking_rules_label"><?php echo get_vocab('booking_rules'); ?></h4>
+        </div>
+        <div class="modal-body">
+          <?php include 'rules.' . $default_language_tokens . '.html'; ?>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo get_vocab('Close'); ?></button>
+        </div>
+      </div>
+    </div>
+  </div>	
 <?php
 
 } // end of print_theme_header()
