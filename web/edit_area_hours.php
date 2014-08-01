@@ -1,13 +1,10 @@
-<?php 
-/**
- * Edit Area Hours is a customization from YorkU Libraries 
- * to be able to set area hours based on day of the week.
- *
-**/ 
+<?php
 require_once "defaultincludes.inc";
 require_once "mrbs_sql.inc";
+
 // Check the user is authorised for this page
 checkAuthorised();
+
 // Also need to know whether they have admin rights
 $user = getUserName();
 $required_level = (isset($max_level) ? $max_level : 2);
@@ -15,162 +12,130 @@ $is_admin = (authGetUserLevel($user) >= $required_level);
 
 print_header($day, $month, $year, isset($area) ? $area : "", isset($room) ? $room : "");
 
-// Get the details for this area
-  $res = sql_query("SELECT * FROM $tbl_area WHERE id=$area LIMIT 1");
-  if (! $res)
-  {
-    fatal_error(0, get_vocab("error_area") . $area . get_vocab("not_found"));
-  }
-  $row = sql_row_keyed($res, 0);
-  sql_free($res);
+$month = ($_REQUEST['month'] > 0 && $_REQUEST['month'] <= 12) ? $_REQUEST['month'] : 0;
 
-// Check to see if this area has hours. If not, generate default values.
-  $res = sql_query("SELECT * FROM mrbs_area_hours WHERE area_id=$area LIMIT 1");
-  if (! $res)
-  {
-    fatal_error(0, get_vocab("error_area") . $area . get_vocab("not_found"));
-  }
-  if (sql_row_keyed($res) == 0) {
-    for($i=1; $i<8; $i++) {
+$error = null;
+$success = null;
+if (isset($_POST['morningstarts'])) {
+  for ($i = 0; $i < 7; $i++) {
+    if ($_POST['id'][$i]) {
+      $sql = 'UPDATE mrbs_area_hours SET '
+        . 'morningstarts=' . $_POST['morningstarts'][$i] . ', morningstarts_minutes=' . $_POST['morningstarts_minutes'][$i] . ',' 
+        . 'eveningends=' . $_POST['eveningends'][$i] . ', eveningends_minutes=' . $_POST['eveningends_minutes'][$i] . ','
+        . 'dayoftheweek=' . $_POST['dayoftheweek'][$i]
+        . ' WHERE month=' . $month 
+        . ' AND id=' . $_POST['id'][$i];
+    } else {
+      $sql = 'INSERT INTO mrbs_area_hours(morningstarts,morningstarts_minutes,eveningends,eveningends_minutes,dayoftheweek,month) '
+        . ' VALUES('
+        . $_POST['morningstarts'][$i] . ',' . $_POST['morningstarts_minutes'][$i] . ',' 
+        . $_POST['eveningends'][$i] . ',' . $_POST['eveningends_minutes'][$i] . ','
+        . $_POST['dayoftheweek'][$i] . ',' . $month
+        . ')';
+    }
 
-        $sql = "INSERT INTO mrbs_area_hours ". 
-               " (area_id, morningstarts, morningstarts_minutes, eveningends, eveningends_minutes, dayoftheweek) " .
-               " VALUES(" . $area ." ,8,0,21,0,". $i .")";
-
-        if (sql_command($sql) < 0) {
-          echo get_vocab("insert_hours_failed") . "<br>\n";
-          trigger_error(sql_error(), E_USER_WARNING);
-          fatal_error(FALSE, get_vocab("fatal_db_error"));
-        }
+    if (sql_command($sql) < 0) {
+      $error = 'Error updating hours. ' . sql_error();
+    } else {
+      $success = 'Hours updated successfully.';
     }
   }
-  sql_free($res);
+}
+
+$rows = array();
+$sql = "SELECT * FROM mrbs_area_hours WHERE month=$month";
+$res = sql_query($sql);
+if ($res) {
+  $count = sql_count($res);
+  for ($i = 0; $i < $count; $i++) {
+    $rows[] = sql_row_keyed($res, $i);
+  }
+}
 ?>
-<div id="">
-  <?php 
-    if ($_GET['status'] == 'success') {
-     echo "<h3 style='color: green;'>Area hours have been successfully updated!</h3>\n";	
-    } 
-    if ($_GET['status'] == 'error') {
-     echo "<h3 style='color: red;'>An error occured while updating the hours.System Admin has been notified.</h3>\n";
-    }
-  ?>
-  <form id="mrbs_area_hours_form" action="edit_area_hours_handler.php" method="post" class="form_general">
-    <input type="hidden" name="area" value="<?php echo $row["id"]?>">
-    <fieldset>
-      <legend>MRBS AREA HOURS : <?php echo $row["area_name"]; ?></legend>
-      <table>
-        <tr>
-         <th>Day</th>
-         <th>Start Hour</th>
-         <th>Start Minute</th>
-         <th>Evening Hour</th>
-         <th>Evening Minute</th>
-        </tr>
-        <tr><td colspan="5"><hr></td></tr>
-        <?php
-          // Loop through all of the days in the week and display the hours from the database
-	  for ($day=1; $day<8; $day++) {
-            
-           $sql = "SELECT * FROM mrbs_area_hours WHERE area_id=$area AND dayoftheweek=$day order by dayoftheweek limit 1";
-          
-           $result = sql_query($sql);
 
-           if (!$result) {
-            echo "Could not successfully run query ($sql) from DB: " . mysql_error();
-            exit;
-           }
-	   $hours = sql_row_keyed($result, 0);
+<h2>Area Hours</h2>
 
-	  // if (mysql_num_rows($result) == 0) {
-           // echo "One of the day of the weeks is not set. Please contact your system admin.";
-           // exit;
-          // }
-	   // Get the MRBS HOURS Row if there is one.
-          // $hours = mysql_fetch_assoc($result)
-        ?> 
-        <tr>
-         <td>
-	<?php
-	  switch($hours['dayoftheweek']) {
+<?php if ($error) { ?>
+  <div class="alert alert-danger" role="alert">
+    <?php echo $error; ?>
+  </div>
+<?php } ?>
 
-            case 1: 
-                 echo "<input type='hidden' name='dayoftheweek_$hours[dayoftheweek]' value=1 readonly=readonly /> MONDAY\n";
-                 break;
-            case 2: 
-                 echo "<input type='hidden' name='dayoftheweek_$hours[dayoftheweek]' value=2 readonly=readonly /> TUESDAY\n";
-                 break;
-            case 3: 
-                 echo "<input type='hidden' name='dayoftheweek_$hours[dayoftheweek]' value=3 readonly=readonly /> WEDNESDAY\n";
-                 break;
-            case 4: 
-                 echo "<input type='hidden' name='dayoftheweek_$hours[dayoftheweek]' value=4 readonly=readonly /> THURSDAY\n";
-                 break;
-            case 5: 
-                 echo "<input type='hidden' name='dayoftheweek_$hours[dayoftheweek]' value=5 readonly=readonly /> FRIDAY\n";
-                 break;
-            case 6: 
-                 echo "<input type='hidden' name='dayoftheweek_$hours[dayoftheweek]' value=6 readonly=readonly /> SATURDAY\n";
-                 break;
-            case 7: 
-                 echo "<input type='hidden' name='dayoftheweek_$hours[dayoftheweek]' value=7 readonly=readonly/> SUNDAY\n";
-                 break;
-          }
-        ?>
-         </td>
-         <td>
-          <select name="start_hour_select_<?php echo $hours['dayoftheweek']; ?>">
-           <?php 
-	      for($i=0; $i<24; $i++) {
-		echo "<option value='$i'"; 
-		  if ($hours['morningstarts'] == $i) { echo "selected=selected"; }
-                echo ">$i</option>\n";
-	      }
-	   ?>
-           </select>
-         </td>
-         <td>
-          <select name="start_minutes_select_<?php echo $hours['dayoftheweek']; ?>">
-           <?php 
-              for($i=0; $i<50; $i=$i+15) {
-                echo "<option value='$i'"; 
-                  if ($hours['morningstarts_minutes'] == $i) { echo "selected=selected"; }
-                echo ">$i</option>\n";
-              }
-           ?>
-           </select>
-         </td>
-         <td>
-          <select name="evening_hour_select_<?php echo $hours['dayoftheweek']; ?>">
-           <?php
-              for($i=0; $i<24; $i++) {
-                echo "<option value='$i'";
-                  if ($hours['eveningends'] == $i) { echo "selected=selected"; }
-                echo ">$i</option>\n";
-              }
-           ?>
-           </select>
-         </td>
-         <td>
-          <select name="evening_minutes_select_<?php echo $hours['dayoftheweek']; ?>">
-           <?php
-              for($i=0; $i<50; $i=$i+15) {
-                echo "<option value='$i'";
-                  if ($hours['eveningends_minutes'] == $i) { echo "selected=selected"; }
-                echo ">$i</option>\n";
-              }
-           ?>
-           </select>
-         </td>
-	 <td><input type="hidden" name="hours_id_<?php echo $hours['dayoftheweek']; ?>" value="<?php echo $hours['id']; ?>" /></td>
-        </tr>
-        <?php } 
-        mysql_free_result($result); 
-        ?>
-      <tr><td><br/><input type="submit" name="submit_hours" value="Submit" style="margin-left:0em;font-size: 14px;" /></td></tr>
-      </table>
-    </fieldset>
-  </form>
+<?php if ($success) { ?>
+  <div class="alert alert-success" role="alert">
+    <?php echo $success; ?>
+  </div>
+<?php } ?>
+
+<p class="help-block">Set the hours for a specific month or set default hours for the whole year.</p>
+
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+    <?php echo $month == 0 ? 'Default' : date('F', mktime(0, 0, 0, $month, 10)); ?> <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="edit_area_hours.php?month=0">Default</a></li>
+    <li class="divider"></li>
+    <?php for ($i = 1; $i <= 12; $i++) { ?>
+      <li><a href="edit_area_hours.php?month=<?php echo $i; ?>"><?php echo date("F", mktime(0, 0, 0, $i, 10)); ?></a></li>
+    <?php } ?>
+  </ul>
 </div>
+
+<form role="form" action="edit_area_hours.php" method="post">
+  <input type="hidden" name="month" value="<?php echo $month; ?>" />
+  
+  <div class="col-xs-2 col-sm-1"></div>
+  <div class="help-block col-xs-4 col-sm-2">First bookable time slot</div>
+  <div class="help-block col-xs-6 col-sm-9">Last bookable time slot</div>
+  
+  <?php foreach (array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') as $i=>$weekday) { ?>
+    <input type="hidden" name="id[]" value="<?php echo $rows[$i]['id']; ?>">
+    <input type="hidden" name="dayoftheweek[]" value="<?php echo $i; ?>">
+    
+    <div class="form-group">
+      <div class="col-xs-2 col-sm-1"><?php echo $weekday; ?></div>
+      
+      <label for="morningstarts<?php echo $i; ?>" class="sr-only">First Slot Hour</label>
+      <div class="col-xs-2 col-sm-1">
+        <select id="morningstarts<?php echo $i; ?>" name="morningstarts[]">
+        <option <?php if (-1 == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="-1">Closed</option>
+        <?php for ($h = 0; $h < 24; $h++) { ?>
+          <option <?php if ($h == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
+        <?php } ?>
+        </select>
+      </div>
+      
+      <label for="morningstarts_minutes<?php echo $i; ?>" class="sr-only">First Slot Minute</label>
+      <div class="col-xs-2 col-sm-1">
+        <select id="morningstarts_minutes<?php echo $i; ?>" name="morningstarts_minutes[]">
+          <option <?php if (0 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
+          <option <?php if (30 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
+        </select>
+      </div>
+      
+      <label for="eveningends<?php echo $i; ?>" class="sr-only">Last Slot Hour</label>
+      <div class="col-xs-2 col-sm-1">
+        <select id="eveningends<?php echo $i; ?>" name="eveningends[]">
+        <?php for ($h = 0; $h < 24; $h++) { ?>
+          <option <?php if ($h == $rows[$i]['eveningends']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
+        <?php } ?>
+        </select>
+      </div>
+      
+      <label for="eveningends_minutes<?php echo $i; ?>" class="sr-only">Last Slot Minute</label>
+      <div class="col-xs-4 col-sm-8">
+        <select id="eveningends_minutes<?php echo $i; ?>" name="eveningends_minutes[]">
+          <option <?php if (0 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
+          <option <?php if (30 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
+        </select>
+      </div>
+    </div>
+  <?php } ?>
+  
+  <div class="btn-group">
+    <button type="submit" class="btn btn-default" title="Save">Save</button>
+  </div>
+</form>
 
 <?php output_trailer(); ?>

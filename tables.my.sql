@@ -168,22 +168,23 @@ INSERT INTO mrbs_variables (variable_name, variable_content)
   VALUES ( 'db_version', '36');
 INSERT INTO mrbs_variables (variable_name, variable_content)
   VALUES ( 'local_db_version', '1');
+
 CREATE TABLE mrbs_area_hours
 (
   id                        int NOT NULL auto_increment,
-  area_id                   int,
   morningstarts             int,
   morningstarts_minutes     int,
   eveningends               int,
   eveningends_minutes       int,
   dayoftheweek	            int,
-  PRIMARY KEY (id)
+  month                     int,
+  PRIMARY KEY (id),
+  UNIQUE KEY dwm_unique (dayoftheweek, month)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE mrbs_closed_dates
 (
   id                        int NOT NULL auto_increment,
-  area_id                   int,
   closed_date               date,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

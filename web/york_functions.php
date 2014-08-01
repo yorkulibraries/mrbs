@@ -12,7 +12,7 @@ function override_area_hours($area) {
     
     // check if area is closed on the given date
     $date = date('Y-m-d', mktime(0,0,0,$month,$day,$year));
-    $sql = "select * from mrbs_closed_dates where closed_date='$date' and area_id=$area";
+    $sql = "select * from mrbs_closed_dates where closed_date='$date' LIMIT 1";
     $res = sql_query($sql);
     if (sql_count($res) > 0) {
       area_closed();
@@ -20,7 +20,7 @@ function override_area_hours($area) {
     }
 
     if (strrpos($_SERVER['REQUEST_URI'], 'week.php') !== false) {
-        $sql = "select min(morningstarts) as morningstarts, max(eveningends) as eveningends from mrbs_area_hours where morningstarts>0  and area_id=$area";
+        $sql = "select min(morningstarts) as morningstarts, max(eveningends) as eveningends from mrbs_area_hours where morningstarts>0";
         $res = sql_query($sql);
         if ($res) {
             $row = sql_row_keyed($res, 0);
@@ -30,8 +30,8 @@ function override_area_hours($area) {
             $eveningends_minutes = 59;
         }
     } else {
-        // get the hours the selected day of the week            
-        $sql = "SELECT * FROM mrbs_area_hours WHERE area_id=$area AND dayoftheweek=$dow LIMIT 1";
+        // get the hours for the selected day of the week 
+        $sql = "SELECT * FROM mrbs_area_hours WHERE dayoftheweek=$dow AND month=$month ORDER BY month DESC LIMIT 1";
         $res = sql_query($sql);
         if ($res) {
             $row = sql_row_keyed($res, 0);
@@ -40,8 +40,7 @@ function override_area_hours($area) {
             $eveningends = $row['eveningends'];
             $eveningends_minutes = $row['eveningends_minutes'];
         }
-        if ($morningstarts == 0 && $morningstarts_minutes == 0 
-            && $eveningends == 0 && $eveningends_minutes == 0) {
+        if ($morningstarts == -1) {
             area_closed();
         }
     }
