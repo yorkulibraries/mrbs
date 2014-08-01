@@ -35,7 +35,7 @@ if (isset($_REQUEST['delete']) && is_numeric($_REQUEST['delete'])) {
 }
 
 $rows = array();
-$sql = "SELECT * FROM mrbs_closed_dates ORDER BY closed_date LIMIT 50";
+$sql = "SELECT * FROM mrbs_closed_dates WHERE closed_date >= curdate() ORDER BY closed_date LIMIT 50";
 $res = sql_query($sql);
 if ($res) {
   $count = sql_count($res);
@@ -70,7 +70,7 @@ if ($res) {
   <button type="submit" class="btn btn-primary" title="Add">Add</button>
 </form>
 
-<h2>Recent holidays (closed dates)</h2>
+<h2>Upcoming holidays (closed dates)</h2>
 <ul class="list-group">
   <?php foreach($rows as $row) { ?>
     <li class="list-group-item"><?php echo $row['closed_date']; ?> <a title="Delete" class="btn btn-danger btn-sm" href="edit_holidays.php?delete=<?php echo $row['id']; ?>"> <span class="glyphicon glyphicon-trash"></span></a></li>
