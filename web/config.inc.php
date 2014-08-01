@@ -94,12 +94,12 @@ $auth['only_admin_can_select_multiroom'] = TRUE;
 
 // types of users allowed to book, empty means ANYONE 
 $auth['allowed_user_groups'] = array(
-    'UNDERGRAD:STUDENT', 
-    'GRAD:STUDENT', 
-    'PYORK_USER:johndoe', 
-    'ILS_CAT5:SOMETHING', 
+    'UNDERGRAD:STUDENT',
+    'GRAD:STUDENT',
+    'PYORK_USER:somepyorkusername',
+    'ILS_CAT5:SOMETHING',
     'ILS_PROFILE:SOMETHING',
-    'REMOTE_ADDR:::1',
+    'REMOTE_ADDR:SOMETHING',
 );
 
 // ILS user API
