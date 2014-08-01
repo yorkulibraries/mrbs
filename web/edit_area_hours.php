@@ -66,7 +66,7 @@ if ($res) {
   </div>
 <?php } ?>
 
-<p class="help-block">Set the hours for a specific month or set default hours for the whole year.</p>
+<p>Set the hours for a specific month or set default hours for the whole year.</p>
 
 <div class="btn-group">
   <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
@@ -95,41 +95,40 @@ if ($res) {
       
       <div class="form-group">
         <label for="morningstarts<?php echo $i; ?>">First Slot</label>
-          <select id="morningstarts<?php echo $i; ?>" name="morningstarts[]">
-          <option <?php if (-1 == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="-1">Closed</option>
-          <?php for ($h = 0; $h < 24; $h++) { ?>
-            <option <?php if ($h == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
-          <?php } ?>
-          </select>
+        <select id="morningstarts<?php echo $i; ?>" name="morningstarts[]">
+        <option <?php if (-1 == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="-1">Closed</option>
+        <?php for ($h = 0; $h < 24; $h++) { ?>
+          <option <?php if ($h == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
+        <?php } ?>
+        </select>
       
         <label for="morningstarts_minutes<?php echo $i; ?>" class="sr-only">First Slot Minute</label>
-          <select id="morningstarts_minutes<?php echo $i; ?>" name="morningstarts_minutes[]">
-            <option <?php if (0 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
-            <option <?php if (30 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
-          </select>
+        <select id="morningstarts_minutes<?php echo $i; ?>" name="morningstarts_minutes[]">
+          <option <?php if (0 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
+          <option <?php if (30 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
+        </select>
       </div>
       
       <div class="form-group">
         <label for="eveningends<?php echo $i; ?>">Last Slot</label>
-          <select id="eveningends<?php echo $i; ?>" name="eveningends[]">
-          <?php for ($h = 0; $h < 24; $h++) { ?>
-            <option <?php if ($h == $rows[$i]['eveningends']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
-          <?php } ?>
-          </select>
+        <select id="eveningends<?php echo $i; ?>" name="eveningends[]">
+        <?php for ($h = 0; $h < 24; $h++) { ?>
+          <option <?php if ($h == $rows[$i]['eveningends']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
+        <?php } ?>
+        </select>
       
         <label for="eveningends_minutes<?php echo $i; ?>" class="sr-only">Last Slot Minute</label>
-          <select id="eveningends_minutes<?php echo $i; ?>" name="eveningends_minutes[]">
-            <option <?php if (0 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
-            <option <?php if (30 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
-          </select>
+        <select id="eveningends_minutes<?php echo $i; ?>" name="eveningends_minutes[]">
+          <option <?php if (0 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
+          <option <?php if (30 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
+        </select>
       </div>
     </fieldset>
   <?php } ?>
   
   <div class="clearfix"></div>
-    <button type="submit" class="btn btn-primary" title="Save">Save</button>
- 
-    <button class="btn btn-default" type="reset" title="Reset">Reset</button>
+  <button type="submit" class="btn btn-primary" title="Save">Save</button>
+  <button class="btn btn-default" type="reset" title="Reset">Reset</button>
 </form>
 
 <?php output_trailer(); ?>
