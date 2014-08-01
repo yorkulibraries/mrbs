@@ -62,6 +62,12 @@ function get_user_groups() {
         $groups[] = $_SESSION['HTTP_PYORK_TYPE'];
     }
     $groups[] = 'REMOTE_ADDR:' . $_SERVER['REMOTE_ADDR'];
+    
+    $ils_user = get_ils_user(get_user_cyin());
+    if (is_object($ils_user) && isset($ils_user->barcode)) {
+        // got a valid ILS user 
+        $groups[] = 'ILS_BARCODE:' . $ils_user->barcode;
+    }
     return $groups;
 }
 
