@@ -67,6 +67,14 @@ function get_user_groups() {
     if (is_object($ils_user) && isset($ils_user->barcode)) {
         // got a valid ILS user 
         $groups[] = 'ILS_BARCODE:' . $ils_user->barcode;
+        $groups[] = 'ILS_PROFILE:' . $ils_user->profile;
+        $groups[] = 'ILS_CAT1:' . $ils_user->cat1;
+        $groups[] = 'ILS_CAT2:' . $ils_user->cat2;
+        $groups[] = 'ILS_CAT3:' . $ils_user->cat3;
+        $groups[] = 'ILS_CAT4:' . $ils_user->cat4;
+        $groups[] = 'ILS_CAT5:' . $ils_user->cat5;
+        $groups[] = 'ILS_LIBRARY:' . $ils_user->library;
+        $groups[] = 'ILS_STATUS:' . $ils_user->status;
     }
     return $groups;
 }
