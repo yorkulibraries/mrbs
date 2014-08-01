@@ -35,7 +35,7 @@ if (isset($_REQUEST['delete']) && is_numeric($_REQUEST['delete'])) {
 }
 
 $rows = array();
-$sql = "SELECT * FROM mrbs_closed_dates ORDER BY closed_date DESC LIMIT 100";
+$sql = "SELECT * FROM mrbs_closed_dates ORDER BY closed_date LIMIT 50";
 $res = sql_query($sql);
 if ($res) {
   $count = sql_count($res);
