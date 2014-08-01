@@ -5,7 +5,7 @@ function override_area_hours($area) {
   
      // calculate selected day of the week
     if (!$day || !$month || !$year) {
-        $dow = date('N', mktime(0,0,0,date('n'),date('j'),date('Y')));
+        $dow = date('N');
     } else {
         $dow = date('N', mktime(0,0,0,$month,$day,$year));
     }

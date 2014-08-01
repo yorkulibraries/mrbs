@@ -1,6 +1,5 @@
 <?php
 require_once "defaultincludes.inc";
-require_once "mrbs_sql.inc";
 
 // Check the user is authorised for this page
 checkAuthorised();
@@ -9,8 +8,6 @@ checkAuthorised();
 $user = getUserName();
 $required_level = (isset($max_level) ? $max_level : 2);
 $is_admin = (authGetUserLevel($user) >= $required_level);
-
-print_header($day, $month, $year, isset($area) ? $area : "", isset($room) ? $room : "");
 
 $month = ($_REQUEST['month'] > 0 && $_REQUEST['month'] <= 12) ? $_REQUEST['month'] : 0;
 
@@ -52,6 +49,8 @@ if ($res) {
   }
 }
 ?>
+
+<?php print_header($day, $month, $year, isset($area) ? $area : "", isset($room) ? $room : ""); ?>
 
 <h2>Area Hours</h2>
 
