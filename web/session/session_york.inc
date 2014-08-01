@@ -5,7 +5,9 @@ function authGet()
 }
 
 function getUserName()
-{
+{  
+  $username = null;
+  
   if ((!isset($_SERVER['REMOTE_USER'])) ||
       (!is_string($_SERVER['REMOTE_USER'])) ||
       (empty($_SERVER['REMOTE_USER'])))
@@ -14,9 +16,8 @@ function getUserName()
 	      (is_string($_SESSION['REMOTE_USER'])) &&
 	      (!empty($_SESSION['REMOTE_USER'])))
 	  {
-			return $_SESSION['REMOTE_USER'];
+			$username = $_SESSION['REMOTE_USER'];
 		}
-    return NULL;
   } 
   else
   {
@@ -26,8 +27,10 @@ function getUserName()
 	      $_SESSION[$key] = $val;
 	    }
 	  }
-    return $_SERVER['REMOTE_USER'];
+    $username = $_SERVER['REMOTE_USER'];
   }
+
+  return $username;
 }
 
 function PrintLogonBox()

@@ -53,8 +53,32 @@ function area_closed() {
   $area_is_closed = true;
 }
 
-function get_user_group() {
-    return isset($_SESSION['HTTP_PYORK_TYPE']) ? $_SESSION['HTTP_PYORK_TYPE'] : null;  
+function get_user_groups() {
+    $groups = array();
+    if (isset($_SESSION['HTTP_PYORK_USER'])) {
+        $groups[] = 'PYORK_USER:' . $_SESSION['HTTP_PYORK_USER'];
+    }
+    if (isset($_SESSION['HTTP_PYORK_TYPE'])) {
+        $groups[] = $_SESSION['HTTP_PYORK_TYPE'];
+    }
+    return $groups;
+}
+
+function get_user_cyin() {
+    return isset($_SESSION['HTTP_PYORK_CYIN']) ? $_SESSION['HTTP_PYORK_CYIN'] : null;  
+}
+
+function get_user_categories($cat) {
+    global $auth;
+    
+    $categories = array();
+    $cyin = get_user_cyin();
+    if (strlen($cyin) == 9) {
+        $jsonurl = $auth['ils_user_api_url'] . 
+        $json = @file_get_contents($auth['ils_user_api_url'] . $cyin);
+        $ils_user = json_decode($json);
+    }
+    return $categories;
 }
 
 function get_area_name($area) {
@@ -66,4 +90,7 @@ function get_area_name($area) {
     }
     return null;
 }
+
+override_area_hours($area);
+
 ?>
