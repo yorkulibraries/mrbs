@@ -80,7 +80,7 @@ $auth["type"] = "york";
 $auth["session"] = "ip"; 
 
 // must be logged in AND authorized to view 
-$auth['deny_public_access'] = false;
+$auth['deny_public_access'] = true;
 
 // The list of administrators (can modify other peoples settings).
 // set to real PY username for prod and "127.0.0.1" for dev
@@ -93,7 +93,14 @@ $auth['only_admin_can_book_multiday'] = TRUE;
 $auth['only_admin_can_select_multiroom'] = TRUE;
 
 // types of users allowed to book, empty means ANYONE 
-$auth['allowed_user_groups'] = array('UNDERGRAD:STUDENT', 'GRAD:STUDENT', 'PYORK_USER:johndoe', 'ILS_CAT5:SOMETHING', 'ILS_PROFILE:SOMETHING');
+$auth['allowed_user_groups'] = array(
+    'UNDERGRAD:STUDENT', 
+    'GRAD:STUDENT', 
+    'PYORK_USER:johndoe', 
+    'ILS_CAT5:SOMETHING', 
+    'ILS_PROFILE:SOMETHING',
+    'REMOTE_ADDR:::1',
+);
 
 // ILS user API
 $auth['ils_user_api_url'] = 'http://ils/user/api/url';

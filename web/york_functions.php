@@ -61,6 +61,7 @@ function get_user_groups() {
     if (isset($_SESSION['HTTP_PYORK_TYPE'])) {
         $groups[] = $_SESSION['HTTP_PYORK_TYPE'];
     }
+    $groups[] = 'REMOTE_ADDR:' . $_SERVER['REMOTE_ADDR'];
     return $groups;
 }
 
