@@ -31,7 +31,7 @@ function override_area_hours($area) {
         }
     } else {
         // get the hours for the selected day of the week 
-        $sql = "SELECT * FROM mrbs_area_hours WHERE dayoftheweek=$dow AND month=$month ORDER BY month DESC LIMIT 1";
+        $sql = "SELECT * FROM mrbs_area_hours WHERE dayoftheweek=$dow AND (month=$month OR month=0) ORDER BY month DESC LIMIT 1";
         $res = sql_query($sql);
         if ($res) {
             $row = sql_row_keyed($res, 0);

@@ -84,11 +84,9 @@ if ($res) {
 <form role="form" action="edit_area_hours.php" method="post">
   <input type="hidden" name="month" value="<?php echo $month; ?>" />
   
-  
-  
-  <?php foreach (array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') as $i=>$weekday) { ?>
+  <?php foreach (array('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday') as $i=>$weekday) { ?>
     <input type="hidden" name="id[]" value="<?php echo $rows[$i]['id']; ?>">
-    <input type="hidden" name="dayoftheweek[]" value="<?php echo $i; ?>">
+    <input type="hidden" name="dayoftheweek[]" value="<?php echo $i+1; ?>">
     
     <fieldset class="col-sm-4" style="padding-left:0">
       <legend><?php echo $weekday; ?></legend>
