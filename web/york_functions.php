@@ -69,17 +69,15 @@ function get_user_cyin() {
     return isset($_SESSION['HTTP_PYORK_CYIN']) ? $_SESSION['HTTP_PYORK_CYIN'] : null;  
 }
 
-function get_user_categories($cat) {
+function get_ils_user($cyin) {
     global $auth;
-    
-    $categories = array();
-    $cyin = get_user_cyin();
+    $ils_user = null;
     if (strlen($cyin) == 9) {
-        $jsonurl = $auth['ils_user_api_url'] . 
         $json = @file_get_contents($auth['ils_user_api_url'] . $cyin);
+        //FIXME: need to check HTTP status code to make sure the API request is ok
         $ils_user = json_decode($json);
     }
-    return $categories;
+    return $ils_user;
 }
 
 function get_area_name($area) {
