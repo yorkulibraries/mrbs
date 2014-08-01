@@ -84,57 +84,52 @@ if ($res) {
 <form role="form" action="edit_area_hours.php" method="post">
   <input type="hidden" name="month" value="<?php echo $month; ?>" />
   
-  <div class="col-xs-2 col-sm-1"></div>
-  <div class="help-block col-xs-4 col-sm-2">First bookable time slot</div>
-  <div class="help-block col-xs-6 col-sm-9">Last bookable time slot</div>
+  
   
   <?php foreach (array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') as $i=>$weekday) { ?>
     <input type="hidden" name="id[]" value="<?php echo $rows[$i]['id']; ?>">
     <input type="hidden" name="dayoftheweek[]" value="<?php echo $i; ?>">
     
-    <div class="form-group">
-      <div class="col-xs-2 col-sm-1"><?php echo $weekday; ?></div>
+    <fieldset class="col-sm-4" style="padding-left:0">
+      <legend><?php echo $weekday; ?></legend>
       
-      <label for="morningstarts<?php echo $i; ?>" class="sr-only">First Slot Hour</label>
-      <div class="col-xs-2 col-sm-1">
-        <select id="morningstarts<?php echo $i; ?>" name="morningstarts[]">
-        <option <?php if (-1 == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="-1">Closed</option>
-        <?php for ($h = 0; $h < 24; $h++) { ?>
-          <option <?php if ($h == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
-        <?php } ?>
-        </select>
+      <div class="form-group">
+        <label for="morningstarts<?php echo $i; ?>">First Slot</label>
+          <select id="morningstarts<?php echo $i; ?>" name="morningstarts[]">
+          <option <?php if (-1 == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="-1">Closed</option>
+          <?php for ($h = 0; $h < 24; $h++) { ?>
+            <option <?php if ($h == $rows[$i]['morningstarts']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
+          <?php } ?>
+          </select>
+      
+        <label for="morningstarts_minutes<?php echo $i; ?>" class="sr-only">First Slot Minute</label>
+          <select id="morningstarts_minutes<?php echo $i; ?>" name="morningstarts_minutes[]">
+            <option <?php if (0 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
+            <option <?php if (30 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
+          </select>
       </div>
       
-      <label for="morningstarts_minutes<?php echo $i; ?>" class="sr-only">First Slot Minute</label>
-      <div class="col-xs-2 col-sm-1">
-        <select id="morningstarts_minutes<?php echo $i; ?>" name="morningstarts_minutes[]">
-          <option <?php if (0 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
-          <option <?php if (30 == $rows[$i]['morningstarts_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
-        </select>
-      </div>
+      <div class="form-group">
+        <label for="eveningends<?php echo $i; ?>">Last Slot</label>
+          <select id="eveningends<?php echo $i; ?>" name="eveningends[]">
+          <?php for ($h = 0; $h < 24; $h++) { ?>
+            <option <?php if ($h == $rows[$i]['eveningends']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
+          <?php } ?>
+          </select>
       
-      <label for="eveningends<?php echo $i; ?>" class="sr-only">Last Slot Hour</label>
-      <div class="col-xs-2 col-sm-1">
-        <select id="eveningends<?php echo $i; ?>" name="eveningends[]">
-        <?php for ($h = 0; $h < 24; $h++) { ?>
-          <option <?php if ($h == $rows[$i]['eveningends']) { echo 'selected="selected"'; } ?> value="<?php echo $h; ?>"><?php echo $h; ?></option>
-        <?php } ?>
-        </select>
+        <label for="eveningends_minutes<?php echo $i; ?>" class="sr-only">Last Slot Minute</label>
+          <select id="eveningends_minutes<?php echo $i; ?>" name="eveningends_minutes[]">
+            <option <?php if (0 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
+            <option <?php if (30 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
+          </select>
       </div>
-      
-      <label for="eveningends_minutes<?php echo $i; ?>" class="sr-only">Last Slot Minute</label>
-      <div class="col-xs-4 col-sm-8">
-        <select id="eveningends_minutes<?php echo $i; ?>" name="eveningends_minutes[]">
-          <option <?php if (0 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="0">0</option>
-          <option <?php if (30 == $rows[$i]['eveningends_minutes']) { echo 'selected="selected"'; } ?> value="30">30</option>
-        </select>
-      </div>
-    </div>
+    </fieldset>
   <?php } ?>
   
-  <div class="btn-group">
-    <button type="submit" class="btn btn-default" title="Save">Save</button>
-  </div>
+  <div class="clearfix"></div>
+    <button type="submit" class="btn btn-primary" title="Save">Save</button>
+ 
+    <button class="btn btn-default" type="reset" title="Reset">Reset</button>
 </form>
 
 <?php output_trailer(); ?>
