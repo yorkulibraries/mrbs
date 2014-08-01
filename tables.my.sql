@@ -173,14 +173,22 @@ CREATE TABLE mrbs_area_hours
 (
   id                        int NOT NULL auto_increment,
   morningstarts             int,
-  morningstarts_minutes     int,
+  morningstarts_minutes     int DEFAULT 0,
   eveningends               int,
-  eveningends_minutes       int,
+  eveningends_minutes       int DEFAULT 0,
   dayoftheweek	            int,
-  month                     int,
+  month                     int DEFAULT 0,
   PRIMARY KEY (id),
   UNIQUE KEY dwm_unique (dayoftheweek, month)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 1);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 2);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 3);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 4);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 5);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (-1, 0, 6);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (-1, 0, 7);
 
 CREATE TABLE mrbs_closed_dates
 (
