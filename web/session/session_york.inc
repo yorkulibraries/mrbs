@@ -27,6 +27,10 @@ function getUserName()
 	      $_SESSION[$key] = $val;
 	    }
 	  }
+	  $ils_user = get_ils_user(get_user_cyin());
+	  if ($ils_user && is_object($ils_user) && isset($ils_user->barcode)) {
+	    $_SESSION['ILS_USER'] = $ils_user;
+    }
     $username = $_SERVER['REMOTE_USER'];
   }
 
