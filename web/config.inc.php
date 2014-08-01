@@ -138,6 +138,8 @@ $vocab_override['en']['area_list'] = 'Areas';
 $vocab_override['fr']['area_list'] = 'Areas';
 $vocab_override['en']['booking_rules'] = 'Booking Rules';
 $vocab_override['fr']['booking_rules'] = 'Booking Rules';
+$vocab_override['en']['holidays'] = 'Holidays';
+$vocab_override['fr']['holidays'] = 'Holidays';
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;
