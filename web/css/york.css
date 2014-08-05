@@ -41,7 +41,7 @@ a:link {
     font-size: inherit;
 }
 
-.edit_entry #div_rooms, .edit_entry #div_areas, .edit_entry #div_type, .edit_entry #end_datepicker {
+.edit_entry #div_areas, .edit_entry #div_type, .edit_entry #end_datepicker {
 	display: none !important;
 }
 
