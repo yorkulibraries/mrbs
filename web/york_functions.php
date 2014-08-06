@@ -39,6 +39,16 @@ function override_area_hours($area) {
             $morningstarts_minutes = $row['morningstarts_minutes'];
             $eveningends = $row['eveningends'];
             $eveningends_minutes = $row['eveningends_minutes'];
+            
+            // override the hours in the area table, too.
+            $sql = "UPDATE mrbs_area SET "
+                . " morningstarts=$morningstarts,morningstarts_minutes=$morningstarts_minutes, "
+                . " eveningends=$eveningends,eveningends_minutes=$eveningends_minutes";
+                
+            if (sql_command($sql) < 0) {
+                // FIXME: must deal with this more gracefully
+                die(sql_error());
+            }
         }
         if ($morningstarts == -1) {
             area_closed();
