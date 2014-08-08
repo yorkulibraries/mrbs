@@ -78,7 +78,27 @@ function get_area_name($area) {
 }
 
 function check_room_availability($room, $year, $month, $day) {
-    return 1;
+    require_once "mrbs_sql.inc";
+    
+    global $eveningends, $eveningends_minutes, $resolution;
+    
+    // calculate next time slot
+    $next_slot = floor( (time() + $resolution) / $resolution ) * $resolution;
+
+    // check availability of each slot
+    $available_slots = 0;
+    $booking = array('room_id'=>$room);
+    $last_slot_starts = mktime($eveningends, $eveningends_minutes);
+    while ($next_slot <= $last_slot_starts) {
+        $booking['start_time'] = $next_slot;
+        $booking['end_time'] = $next_slot + $resolution;
+        $booked = mrbsCheckFree($booking, 0 , 0);
+        if (!$booked) {
+            $available_slots++;
+        }
+        $next_slot += $resolution;
+    }
+    return $available_slots;
 }
 
 function check_area_availability($area, $year, $month, $day) {
@@ -88,7 +108,7 @@ function check_area_availability($area, $year, $month, $day) {
         $count = sql_count($res);
         for ($i = 0; $i < $count; $i++) {
             $room = sql_row_keyed($res, $i);
-            if (check_room_availability($room['id'])) {
+            if (check_room_availability($room['id']) > 0) {
                 $availability++;
             }
         }
