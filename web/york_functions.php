@@ -80,18 +80,42 @@ function get_area_name($area) {
 function check_room_availability($room, $year, $month, $day) {
     require_once "mrbs_sql.inc";
     
-    global $eveningends, $eveningends_minutes, $resolution;
+    global $morningstarts, $morningstarts_minutes, $eveningends, $eveningends_minutes, $resolution, $area_is_closed;
+
+    // none available if area is closed
+    if ($area_is_closed) {
+        return 0;
+    }
+    
+    $today_date = mktime(0,0,0);
+    $given_date = mktime(0,0,0,$month,$day,$year);
+    
+    // none available if date is in the past
+    if ($given_date < $today_date) {
+        return 0;
+    }
     
     // calculate next time slot
-    $next_slot = floor( (time() + $resolution) / $resolution ) * $resolution;
+    $next_slot_timestamp = time();
+    if ($given_date > $today_date) {
+        $next_slot_timestamp = mktime($morningstarts, $morningstarts_minutes,0,$month,$day,$year);
+    }
+    $next_slot = floor( ($next_slot_timestamp + $resolution) / $resolution ) * $resolution;
+    
+    // calculate the last time slot
+    $last_slot_starts = mktime($eveningends, $eveningends_minutes);
+    if ($given_date > $today_date) {
+        $last_slot_starts = mktime($eveningends, $eveningends_minutes,0,$month,$day,$year);
+    }
 
     // check availability of each slot
     $available_slots = 0;
     $booking = array('room_id'=>$room);
-    $last_slot_starts = mktime($eveningends, $eveningends_minutes);
     while ($next_slot <= $last_slot_starts) {
         $booking['start_time'] = $next_slot;
         $booking['end_time'] = $next_slot + $resolution;
+        $booking['start_time_rfc2822'] = date(DATE_RFC2822, $booking['start_time']);
+        $booking['end_time_rfc2822'] = date(DATE_RFC2822, $booking['end_time']);
         $booked = mrbsCheckFree($booking, 0 , 0);
         if (!$booked) {
             $available_slots++;
@@ -108,7 +132,7 @@ function check_area_availability($area, $year, $month, $day) {
         $count = sql_count($res);
         for ($i = 0; $i < $count; $i++) {
             $room = sql_row_keyed($res, $i);
-            if (check_room_availability($room['id']) > 0) {
+            if (check_room_availability($room['id'], $year, $month, $day) > 0) {
                 $availability++;
             }
         }
