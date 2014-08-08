@@ -182,13 +182,13 @@ CREATE TABLE mrbs_area_hours
   UNIQUE KEY dwm_unique (dayoftheweek, month)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 1);
-INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 2);
-INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 3);
-INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 4);
-INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (8, 20, 5);
-INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (-1, 0, 6);
-INSERT INTO mrbs_area_hours(morningstarts,eveningends,dayoftheweek) VALUES (-1, 0, 7);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,eveningends_minutes,dayoftheweek) VALUES (8, 22, 30, 1);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,eveningends_minutes,dayoftheweek) VALUES (8, 22, 30, 2);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,eveningends_minutes,dayoftheweek) VALUES (8, 22, 30, 3);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,eveningends_minutes,dayoftheweek) VALUES (8, 22, 30, 4);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,eveningends_minutes,dayoftheweek) VALUES (8, 22, 30, 5);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,eveningends_minutes,dayoftheweek) VALUES (-1, 0, 0, 6);
+INSERT INTO mrbs_area_hours(morningstarts,eveningends,eveningends_minutes,dayoftheweek) VALUES (-1, 0, 0, 7);
 
 CREATE TABLE mrbs_closed_dates
 (
