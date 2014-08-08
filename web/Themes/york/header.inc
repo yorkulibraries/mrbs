@@ -165,7 +165,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=1">Scott Library</a>
 	              </li>
 								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/mrbs/day.php?group=1&area=43">Scott Library Learning Commons</a>
+	                <a role="menuitem" tabindex="-1" href="/rooms/scottlc/">Scott Library Learning Commons</a>
 	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="/rooms/smil/">Sound and Moving Image Library</a>
