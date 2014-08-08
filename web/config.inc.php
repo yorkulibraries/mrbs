@@ -104,6 +104,10 @@ $auth['allowed_user_groups']['Group Study Rooms'] = array('UNDERGRAD:STUDENT', '
 $max_duration_enabled = TRUE; // Set to TRUE if you want to enforce a maximum duration
 $max_duration_secs = 60*60*3;  // (seconds) - when using "times"
 
+$max_per_interval_global_enabled['day']    = TRUE;
+$max_per_interval_global['day'] = 1;      // max 1 bookings per day in total
+
+
 // language override
 $vocab_override['en']['mrbs'] = "Group Study Rooms";
 $vocab_override['fr']['mrbs'] = "Salles d'études";
