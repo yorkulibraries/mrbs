@@ -76,4 +76,23 @@ function get_area_name($area) {
     }
     return null;
 }
+
+function check_room_availability($room, $year, $month, $day) {
+    return 1;
+}
+
+function check_area_availability($area, $year, $month, $day) {
+    $availability = 0;
+    $res = sql_query("SELECT * FROM mrbs_room WHERE area_id=$area ORDER BY sort_key");
+    if ($res) {
+        $count = sql_count($res);
+        for ($i = 0; $i < $count; $i++) {
+            $room = sql_row_keyed($res, $i);
+            if (check_room_availability($room['id'])) {
+                $availability++;
+            }
+        }
+    }
+    return $availability;
+}
 ?>
