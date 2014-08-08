@@ -94,6 +94,9 @@ $auth['only_admin_can_book_repeat'] = TRUE;
 $auth['only_admin_can_book_multiday'] = TRUE;
 $auth['only_admin_can_select_multiroom'] = TRUE;
 
+// normal users cannot cancel bookings
+$auth['users_cannot_delete'] = FALSE;
+
 // types of users allowed to book (by area), empty means ANYONE can book
 $auth['allowed_user_groups']['Group Study Rooms'] = array('UNDERGRAD:STUDENT', 'GRAD:STUDENT', 'NONDEG:STUDENT');
 
