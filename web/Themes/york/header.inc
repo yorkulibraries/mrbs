@@ -162,7 +162,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 	                <a role="menuitem" tabindex="-1" href="/rooms/bronfman/">Peter F. Bronfman Business Library</a>
 	              </li>
 								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/scoot/">Scott Library - 1st floor</a>
+	                <a role="menuitem" tabindex="-1" href="/rooms/scott/">Scott Library - 1st floor</a>
 	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="/rooms/scottlc/">Scott Library - 2nd floor</a>
