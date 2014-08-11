@@ -141,6 +141,9 @@ function print_theme_header($day, $month, $year, $area, $room)
 					</ul>
 					
 	        <ul class="nav navbar-nav">
+	          <li role="presentation">
+              <a role="menuitem" tabindex="-1" href="//www.library.yorku.ca/"><?php echo get_vocab('libraries_home'); ?></a>
+            </li>
 						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab($default_language_tokens); ?> <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">

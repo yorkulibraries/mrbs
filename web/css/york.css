@@ -17,6 +17,12 @@ a:link {
 .yul-navbar .navbar-brand img {
   margin-top: -15px;
 }
+.yul-navbar .navbar-nav > li > a {
+    color: #333;
+}
+.yul-navbar .navbar-brand {
+    color: #333;
+}
 #contents h1 {
 	margin-top: 0;
 }
