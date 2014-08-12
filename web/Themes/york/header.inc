@@ -158,6 +158,9 @@ function print_theme_header($day, $month, $year, $area, $room)
 						<li class="dropdown">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab('libraries_with_study_rooms'); ?> <span class="caret"></span></a>
 	            <ul class="dropdown-menu" role="menu">
+	              <li role="presentation">
+	                <a role="menuitem" tabindex="-1" href="/rooms/las/">Adaptive Equipment Rooms</a>
+	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="/rooms/frost/">Leslie Frost Library (Glendon Campus)</a>
 	              </li>
