@@ -168,7 +168,9 @@ function getWritable($creator, $user, $room)
  */
 function showAccessDenied($day, $month, $year, $area, $room)
 {
-  global $HTTP_REFERER, $user;
+  global $HTTP_REFERER;
+  
+  $user = getUserName();
 
   print_header($day, $month, $year, $area, isset($room) ? $room : "");
 ?>
