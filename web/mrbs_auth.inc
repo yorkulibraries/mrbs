@@ -177,7 +177,7 @@ function showAccessDenied($day, $month, $year, $area, $room)
   <h1><?php echo get_vocab("accessdenied")?></h1>
   <div class="alert alert-danger" role="alert">
     <?php if (!$user) { ?>
-      <a href="login.php" class="alert-link"><?php echo get_vocab("please_login_to_view_this_page")?></a>
+      <a href="login.php" class="alert-link"><?php echo get_vocab("please_login")?></a>
     <?php } else { ?>
       <?php echo get_vocab("norights")?>
     <?php } ?>
