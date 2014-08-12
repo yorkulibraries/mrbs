@@ -102,7 +102,7 @@ $auth['allowed_user_groups'] = array(
 );
 
 // ILS user API
-$auth['ils_user_api_url'] = 'http://ils/user/api/url';
+$auth['ils_user_api_url'] = NULL;
 
 // normal users cannot cancel bookings
 $auth['users_cannot_delete'] = TRUE;

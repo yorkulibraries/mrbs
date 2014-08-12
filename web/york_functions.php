@@ -96,10 +96,12 @@ function get_user_cyin() {
 function get_ils_user($cyin) {
     global $auth;
     $ils_user = null;
-    if (strlen($cyin) == 9) {
-        $json = @file_get_contents($auth['ils_user_api_url'] . $cyin);
-        //FIXME: need to check HTTP status code to make sure the API request is ok
-        $ils_user = json_decode($json);
+    if (isset($auth['ils_user_api_url']) && !empty($auth['ils_user_api_url']) && $auth['ils_user_api_url'] != null) {
+        if (strlen($cyin) == 9) {
+            $json = @file_get_contents($auth['ils_user_api_url'] . $cyin);
+            //FIXME: need to check HTTP status code to make sure the API request is ok
+            $ils_user = json_decode($json);
+        }
     }
     return $ils_user;
 }
