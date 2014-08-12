@@ -157,7 +157,8 @@ $vocab_override['en']['holidays'] = 'Holidays';
 $vocab_override['fr']['holidays'] = 'Holidays';
 $vocab_override['en']['libraries_home'] = 'Libraries Home';
 $vocab_override['fr']['libraries_home'] = 'Libraries Home';
-
+$vocab_override['en']['please_login_to_view_this_page'] = 'Please login to view this page.';
+$vocab_override['fr']['please_login_to_view_this_page'] = 'Please login to view this page.';
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;
