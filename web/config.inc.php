@@ -155,6 +155,9 @@ $vocab_override['en']['booking_rules'] = 'Booking Rules';
 $vocab_override['fr']['booking_rules'] = 'Booking Rules';
 $vocab_override['en']['holidays'] = 'Holidays';
 $vocab_override['fr']['holidays'] = 'Holidays';
+$vocab_override['en']['libraries_home'] = 'Libraries Home';
+$vocab_override['fr']['libraries_home'] = 'Libraries Home';
+
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;

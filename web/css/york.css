@@ -17,6 +17,12 @@ a:link {
 .yul-navbar .navbar-brand img {
   margin-top: -15px;
 }
+.yul-navbar .navbar-nav > li > a {
+    color: #333;
+}
+.yul-navbar .navbar-brand {
+    color: #333;
+}
 #contents h1 {
 	margin-top: 0;
 }
@@ -64,6 +70,9 @@ a.booking-rules, a.booking-rules:active, a.booking-rules:visited, a.booking-rule
 #dwm h2, #dwm_header h2 {
 	font-size: 16px;
 	margin-top: 0;
+}
+#dwm_areas ul li {
+    margin-bottom: 5px;
 }
 @media (max-width: 480px) {
 	.yul-navbar .navbar-brand img {

@@ -173,14 +173,13 @@ function showAccessDenied($day, $month, $year, $area, $room)
   print_header($day, $month, $year, $area, isset($room) ? $room : "");
 ?>
   <h1><?php echo get_vocab("accessdenied")?></h1>
-  <p>
-   <?php echo get_vocab("norights")?>
-  </p>
-  <p>
-    <a href="<?php echo htmlspecialchars($HTTP_REFERER); ?>">
-      <?php echo get_vocab("returnprev"); ?>
-    </a>
-  </p>
+  <div class="alert alert-danger" role="alert">
+    <?php if (!$user) { ?>
+      <a href="login.php" class="alert-link"><?php echo get_vocab("please_login_to_view_this_page")?></a>
+    <?php } else { ?>
+      <?php echo get_vocab("norights")?>
+    <?php } ?>
+  </div>
 <?php
   // Print footer and exit
   print_footer(TRUE);

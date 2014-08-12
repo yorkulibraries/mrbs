@@ -19,3 +19,4 @@ require_once "mrbs_auth.inc";
 require "standard_vars.inc.php";
 
 require_once "york_functions.php";
+override_area_hours($area);

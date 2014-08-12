@@ -2080,8 +2080,17 @@ function make_area_select_html($link, $current, $year, $month, $day)
     {
       $out_html .= "<ul>\n";
       for ($i = 0; ($row = sql_row_keyed($res, $i)); $i++)
-      {
-        $out_html .= "<li><a href=\"$link?year=$year&amp;month=$month&amp;day=$day&amp;area=${row['id']}\">";
+      {        
+        $out_html .= '<li>';
+        if ($link == 'day.php') {
+          $availability = check_area_availability($row['id'], $year, $month, $day);
+          if ($availability > 0) {
+            $out_html .= '<span class="label label-success">' . $availability . ' Available</span> ';
+          } else {
+            $out_html .= '<span class="label label-danger">' . $availability . ' Available</span> ';
+          }
+        }
+        $out_html .= "<a href=\"$link?year=$year&amp;month=$month&amp;day=$day&amp;area=${row['id']}\">";
         $out_html .= "<span" . (($row['id'] == $current) ? ' class="current"' : '') . ">";
         $out_html .= htmlspecialchars($row['area_name']) . "</span></a></li>\n";
       }
