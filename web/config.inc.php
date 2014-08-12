@@ -77,15 +77,15 @@ $auth["type"] = "york";
 
 // How to get and keep the user ID.
 // set to "york" for prod, "ip" for dev
-$auth["session"] = "ip"; 
+$auth["session"] = "york"; 
 
 // must be logged in AND authorized to view 
-$auth['deny_public_access'] = true;
+$auth['deny_public_access'] = FALSE;
 
 // The list of administrators (can modify other peoples settings).
 // set to real PY username for prod and "127.0.0.1" for dev
 unset($auth['admin']);
-//$auth['admin'] = array('::1');
+$auth['admin'] = array();
 
 // admin only restrictions
 $auth['only_admin_can_book_repeat'] = TRUE;
@@ -93,20 +93,19 @@ $auth['only_admin_can_book_multiday'] = TRUE;
 $auth['only_admin_can_select_multiroom'] = TRUE;
 
 // types of users allowed to book, empty means ANYONE 
+// Possible values are: 
+// UNDERGRAD:STUDENT, GRAD:STUDENT, PYORK_USER:somepyorkusername
+// ILS_CAT(1-5):SOMETHING, ILS_PROFILE:SOMETHING, REMOTE_ADDR:SOMETHING
 $auth['allowed_user_groups'] = array(
     'UNDERGRAD:STUDENT',
     'GRAD:STUDENT',
-    'PYORK_USER:somepyorkusername',
-    'ILS_CAT5:SOMETHING',
-    'ILS_PROFILE:SOMETHING',
-    'REMOTE_ADDR:SOMETHING',
 );
 
 // ILS user API
 $auth['ils_user_api_url'] = 'http://ils/user/api/url';
 
 // normal users cannot cancel bookings
-$auth['users_cannot_delete'] = FALSE;
+$auth['users_cannot_delete'] = TRUE;
 
 // Set a maximum duration for bookings
 $max_duration_enabled = TRUE; // Set to TRUE if you want to enforce a maximum duration
