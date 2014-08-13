@@ -72,7 +72,7 @@ $db_tbl_prefix = "mrbs_";
    or areadefaults.inc.php.  */
 
 // booking rules file (there should be a rules.en.html and rules.fr.html)
-$booking_rules = 'las-rules';
+$booking_rules = 'rules';
 
 $theme = "york";
 
