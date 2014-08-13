@@ -71,6 +71,9 @@ $db_tbl_prefix = "mrbs_";
    to change the default configuration. Do _NOT_ modify systemdefaults.inc.php
    or areadefaults.inc.php.  */
 
+// booking rules file (there should be a rules.en.html and rules.fr.html)
+$booking_rules = 'las-rules';
+
 $theme = "york";
 
 $auth["type"] = "york";

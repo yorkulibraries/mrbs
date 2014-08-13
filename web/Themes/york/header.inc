@@ -201,7 +201,7 @@ function print_theme_header($day, $month, $year, $area, $room)
           <h4 class="modal-title" id="booking_rules_label"><?php echo get_vocab('booking_rules'); ?></h4>
         </div>
         <div class="modal-body">
-          <?php include 'rules.' . $default_language_tokens . '.html'; ?>
+          <?php global $booking_rules; include $booking_rules . '.' . $default_language_tokens . '.html'; ?>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo get_vocab('Close'); ?></button>
