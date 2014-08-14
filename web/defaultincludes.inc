@@ -18,5 +18,14 @@ require_once "dbsys.inc";
 require_once "mrbs_auth.inc";
 require "standard_vars.inc.php";
 
+// Setup memcached interface
+$memcache = false;
+if (isset($memcache_host) && isset($memcache_port) && isset($memcache_connection_timeout)) {
+    $memcache = new Memcache();
+    if (!@$memcache->pconnect($memcache_host, $memcache_port, $timeout)) {
+        $memcache = false;
+    }
+}
+
 require_once "york_functions.php";
 override_area_hours($area);

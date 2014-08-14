@@ -2,7 +2,8 @@
 function override_area_hours($area) {
     global $morningstarts, $morningstarts_minutes, $eveningends, $eveningends_minutes;
     global $day, $month, $year;
-  
+    global $memcache;
+
      // calculate selected day of the week
     if (!$day || !$month || !$year) {
         $dow = date('N');
@@ -95,12 +96,30 @@ function get_user_cyin() {
 
 function get_ils_user($cyin) {
     global $auth;
+    global $memcache, $memcache_expiry;
     $ils_user = null;
     if (isset($auth['ils_user_api_url']) && !empty($auth['ils_user_api_url']) && $auth['ils_user_api_url'] != null) {
         if (strlen($cyin) == 9) {
-            $json = @file_get_contents($auth['ils_user_api_url'] . $cyin);
-            //FIXME: need to check HTTP status code to make sure the API request is ok
+            $user_api_url = $auth['ils_user_api_url'] . $cyin;
+            $cache_key = 'mrbs_' . md5($user_api_url);
+            if ($memcache) {
+                $result = $memcache->get($cache_key);
+                if ($result !== false) {
+                    return $result;
+                }
+            }
+            $json = @file_get_contents($user_api_url);
             $ils_user = json_decode($json);
+            if ($ils_user && is_object($ils_user) && isset($ils_user->barcode)) {
+                // got a valid ILS user object, cache it if memcache is configured
+                if ($memcache) {
+                    $memcache->set($cache_key, $ils_user, 0, $memcache_expiry);
+                }
+                return $ils_user;
+            } else {
+                // not a valid ILS user object
+                return null;
+            }
         }
     }
     return $ils_user;

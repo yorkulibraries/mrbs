@@ -191,3 +191,9 @@ $mail_settings['area_admin_on_bookings'] = FALSE;
 $mail_settings['details'] = TRUE;
 $mail_settings['from'] = 'no-reply@yorku.ca';
 $mail_settings['recipients'] = '';
+
+// Memcached
+$memcache_host='localhost';
+$memcache_port=11211;
+$memcache_connection_timeout=1;
+$memcache_expiry=300;
