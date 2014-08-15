@@ -62,20 +62,30 @@ function authGetUserLevel($user)
       return 2;
     }
   }
-
-  // check user group
-  if (isset($auth['allowed_user_groups']) && !empty($auth['allowed_user_groups'])) {
-    $groups = get_user_groups();
+  
+  $area_name = get_area_name($area);
+  $groups = get_user_groups();
+  if (isset($auth['allowed_user_groups_for_area'][$area_name]) && !empty($auth['allowed_user_groups_for_area'][$area_name])) {
     if (!empty($groups)) {
       foreach ($groups as $group) {
-        if (in_array($group, $auth['allowed_user_groups'])) {
+        if (in_array($group, $auth['allowed_user_groups_for_area'][$area_name])) {
           return 1;
         }
       }
     }
     return 0;
+  } else {
+    if (isset($auth['allowed_user_groups']) && !empty($auth['allowed_user_groups'])) {
+      if (!empty($groups)) {
+        foreach ($groups as $group) {
+          if (in_array($group, $auth['allowed_user_groups'])) {
+            return 1;
+          }
+        }
+      }
+      return 0;
+    }
   }
-    
   // Everybody else is access level '1'
   return 1;
 }
