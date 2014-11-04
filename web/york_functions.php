@@ -197,4 +197,17 @@ function check_area_availability($area, $year, $month, $day) {
     }
     return $availability;
 }
+
+function setup_memcache() {
+    global $memcache, $memcache_host, $memcache_port, $memcache_connection_timeout;
+    
+    // Setup memcached interface
+    $memcache = false;
+    if (isset($memcache_host) && isset($memcache_port) && isset($memcache_connection_timeout)) {
+        $memcache = new Memcache();
+        if (!@$memcache->pconnect($memcache_host, $memcache_port, $memcache_connection_timeout)) {
+            $memcache = false;
+        }
+    }
+}
 ?>
