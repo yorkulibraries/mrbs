@@ -68,7 +68,7 @@ function print_theme_header($day, $month, $year, $area, $room)
   <link media="screen,projection,tv" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" type="text/css" href="css/bootstrap3-wysihtml5.min.css">
   <link href="css/york.css" rel="stylesheet" media="all">
 
   </head>
@@ -116,6 +116,9 @@ function print_theme_header($day, $month, $year, $area, $room)
 	              </li>
 	              <li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="edit_holidays.php?area=<?php echo $area; ?>"><?php echo get_vocab("holidays"); ?></a>
+	              </li>
+	              <li role="presentation">
+	                <a role="menuitem" tabindex="-1" href="edit_rules.php?area=<?php echo $area; ?>"><?php echo get_vocab("booking_rules"); ?></a>
 	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="report.php"><?php echo get_vocab("report"); ?></a>
@@ -191,6 +194,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 
 <div id="contents" class="container">
 	<h1><?php echo get_vocab('pagetitle'); ?></h1>
+	<?php if (get_booking_rules()) { ?>
 	<p><a class="booking-rules" data-toggle="modal" data-target="#booking_rules"><?php echo get_vocab('booking_rules'); ?></a></p>
   <!-- Modal -->
   <div class="modal fade" id="booking_rules" tabindex="-1" role="dialog" aria-labelledby="booking_rules_label" aria-hidden="true">
@@ -208,7 +212,8 @@ function print_theme_header($day, $month, $year, $area, $room)
         </div>
       </div>
     </div>
-  </div>	
+  </div>
+  <?php } ?>	
 <?php
 
 } // end of print_theme_header()
