@@ -71,16 +71,13 @@ $db_tbl_prefix = "mrbs_";
    to change the default configuration. Do _NOT_ modify systemdefaults.inc.php
    or areadefaults.inc.php.  */
 
-// booking rules file (there should be a rules.en.html and rules.fr.html)
-$booking_rules = 'rules';
-
 $theme = "york";
 
 $auth["type"] = "york";
 
 // How to get and keep the user ID.
 // set to "york" for prod, "ip" for dev
-$auth["session"] = "york"; 
+$auth["session"] = "ip"; 
 
 // must be logged in AND authorized to view 
 $auth['deny_public_access'] = FALSE;
@@ -88,7 +85,7 @@ $auth['deny_public_access'] = FALSE;
 // The list of administrators (can modify other peoples settings).
 // set to real PY username for prod and "127.0.0.1" for dev
 unset($auth['admin']);
-$auth['admin'] = array();
+$auth['admin'] = array('::1');
 
 // admin only restrictions
 $auth['only_admin_can_book_repeat'] = TRUE;
@@ -145,3 +142,19 @@ $memcache_host='localhost';
 $memcache_port=11211;
 $memcache_connection_timeout=1;
 $memcache_expiry=300;
+
+// global nav menu
+$global_nav_links = array(
+    'libraries_home' => '//www.library.yorku.ca/',
+    'libraries_with_study_rooms' => array(
+        'Adaptive Equipment Rooms' => '/rooms/las/',
+        'Leslie Frost Library (Glendon Campus)' => '/rooms/frost/',
+        'Peter F. Bronfman Business Library' => '/rooms/bronfman/',
+        'Scott Library - 1st floor' => '/rooms/scott/',
+        'Scott Library - 2nd floor' => '/rooms/scottlc/',
+        'Sound and Moving Image Library' => '/rooms/smil/',
+        'Steacie Science & Engineering Library' => '/rooms/steacie/',
+        'Osgoode Hall Law School Library' => 'http://rooms.library.osgoode.yorku.ca/',
+    ),
+);
+
