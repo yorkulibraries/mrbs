@@ -2,7 +2,6 @@
 
 // $Id: header.inc 2784 2013-11-21 10:48:22Z cimorrison $
 
-
 // Print the page header
 function print_theme_header($day, $month, $year, $area, $room)
 {
@@ -45,6 +44,9 @@ function print_theme_header($day, $month, $year, $area, $room)
   
   http_headers();
   echo DOCTYPE;
+  
+  $booking_rules = get_booking_rules();
+  global $global_nav_links;  
 ?>
 
 <html>
@@ -100,7 +102,7 @@ function print_theme_header($day, $month, $year, $area, $room)
             <span class="icon-bar"></span>
           </button>
           <a title="York University" href="http://www.yorku.ca/" class="navbar-brand"><img src="yib11yorklogo.gif" alt="York University"/></a>
-          <a class="navbar-brand" href="index.php"><?php echo get_vocab("mrbs") ?></a>
+          <a class="navbar-brand" href="index.php"><?php echo get_vocab("app_home") ?></a>
         </div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -126,6 +128,17 @@ function print_theme_header($day, $month, $year, $area, $room)
 	            </ul>
 	          </li>
 	          <?php } ?>
+	          <li class="dropdown">
+	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab($default_language_tokens); ?> <span class="caret"></span></a>
+	            <ul class="dropdown-menu" role="menu">
+								<li role="presentation">
+	                <a role="menuitem" tabindex="-1" href="index.php?mylang=en"><?php echo get_vocab('en'); ?></a>
+	              </li>
+								<li role="presentation">
+	                <a role="menuitem" tabindex="-1" href="index.php?mylang=fr"><?php echo get_vocab('fr'); ?></a>
+	              </li>
+							</ul>
+						</li>
 	          <?php if (empty($user)) { ?>
 	          <li role="presentation">
               <a role="menuitem" tabindex="-1" href="login.php"><span class="fa fa-sign-in"></span> <?php echo get_vocab('login'); ?></a>
@@ -144,49 +157,24 @@ function print_theme_header($day, $month, $year, $area, $room)
 					</ul>
 					
 	        <ul class="nav navbar-nav">
-	          <li role="presentation">
-              <a role="menuitem" tabindex="-1" href="//www.library.yorku.ca/"><?php echo get_vocab('libraries_home'); ?></a>
-            </li>
-						<li class="dropdown">
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab($default_language_tokens); ?> <span class="caret"></span></a>
-	            <ul class="dropdown-menu" role="menu">
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="index.php?mylang=en"><?php echo get_vocab('en'); ?></a>
-	              </li>
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="index.php?mylang=fr"><?php echo get_vocab('fr'); ?></a>
-	              </li>
-							</ul>
-						</li>
-						<li class="dropdown">
-	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab('libraries_with_study_rooms'); ?> <span class="caret"></span></a>
-	            <ul class="dropdown-menu" role="menu">
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/las/">Adaptive Equipment Rooms</a>
-	              </li>
+	          <?php foreach($global_nav_links as $menu_label=>$menu_link) { ?>
+	            <?php if (is_array($menu_link)) { ?>
+	              <li class="dropdown">
+    	            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo get_vocab($menu_label); ?> <span class="caret"></span></a>
+    	            <ul class="dropdown-menu" role="menu">
+    	              <?php foreach($menu_link as $sub_menu_label=>$sub_menu_link) { ?>
+    	                <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="<?php echo $sub_menu_link; ?>"><?php echo get_vocab($sub_menu_label); ?></a>
+                      </li>
+    	              <?php } ?>
+    	            </ul>
+    	          </li>
+	            <?php } else { ?>
 	              <li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/frost/">Leslie Frost Library (Glendon Campus)</a>
-	              </li>
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/bronfman/">Peter F. Bronfman Business Library</a>
-	              </li>
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/scott/">Scott Library - 1st floor</a>
-	              </li>
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/scottlc/">Scott Library - 2nd floor</a>
-	              </li>
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/smil/">Sound and Moving Image Library</a>
-	              </li>
-								<li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="/rooms/steacie/">Steacie Science &amp; Engineering Library</a>
-	              </li>
-	              <li role="presentation">
-	                <a role="menuitem" tabindex="-1" href="http://rooms.library.osgoode.yorku.ca/">Osgoode Hall Law School Library</a>
-	              </li>
-	            </ul>
-	          </li>
+                  <a role="menuitem" tabindex="-1" href="<?php echo $menu_link; ?>"><?php echo get_vocab($menu_label); ?></a>
+                </li>
+	            <?php } ?>
+	          <?php } ?>
 	        </ul>
 	      </div>
       </div>
@@ -194,7 +182,7 @@ function print_theme_header($day, $month, $year, $area, $room)
 
 <div id="contents" class="container">
 	<h1><?php echo get_vocab('pagetitle'); ?></h1>
-	<?php if (get_booking_rules()) { ?>
+	<?php if ($booking_rules) { ?>
 	<p><a class="booking-rules" data-toggle="modal" data-target="#booking_rules"><?php echo get_vocab('booking_rules'); ?></a></p>
   <!-- Modal -->
   <div class="modal fade" id="booking_rules" tabindex="-1" role="dialog" aria-labelledby="booking_rules_label" aria-hidden="true">
@@ -205,7 +193,7 @@ function print_theme_header($day, $month, $year, $area, $room)
           <h4 class="modal-title" id="booking_rules_label"><?php echo get_vocab('booking_rules'); ?></h4>
         </div>
         <div class="modal-body">
-          <?php echo get_booking_rules(); ?>
+          <?php echo $booking_rules; ?>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo get_vocab('Close'); ?></button>

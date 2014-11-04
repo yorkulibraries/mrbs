@@ -46,4 +46,6 @@ $vocab_override['en']['logged_out_success'] = 'You have been logged out successf
 $vocab_override['fr']['logged_out_success'] = 'You have been logged out successfully.';
 $vocab_override['en']['global_title'] = 'Group Study Rooms | York University Libraries';
 $vocab_override['fr']['global_title'] = 'Group Study Rooms | York University Libraries';
+$vocab_override['en']['app_home'] = "Group Study Rooms";
+$vocab_override['fr']['app_home'] = "Salles d'études";
 ?>

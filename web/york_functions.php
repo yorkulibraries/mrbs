@@ -228,13 +228,19 @@ function get_booking_rules() {
     $res = sql_query("SELECT * FROM mrbs_rules WHERE lang='$default_language_tokens' ORDER BY id DESC");
     if ($res && sql_count($res) > 0) {
         $row = sql_row_keyed($res, 0);
-        return $row['html'];
+        $html = $row['html'];
+        if (strlen(trim($html)) > 0) {
+            return $html;
+        }
     }
     // try finding rules in any language
     $res = sql_query("SELECT * FROM mrbs_rules ORDER BY id DESC");
     if ($res && sql_count($res) > 0) {
         $row = sql_row_keyed($res, 0);
-        return $row['html'];
+        $html = $row['html'];
+        if (strlen(trim($html)) > 0) {
+            return $html;
+        }
     }
     // give up
     return null;
