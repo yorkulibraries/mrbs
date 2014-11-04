@@ -50,11 +50,11 @@ function print_theme_header($day, $month, $year, $area, $room)
 <html>
   <head>
   
-  <meta charset="<?php echo get_charset(); ?>">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title><?php echo get_vocab("mrbs") ?> | York University Libraries</title>
+  <title><?php echo get_vocab('global_title') ?></title>
   
   <?php
   require_once "style.inc";
@@ -201,7 +201,7 @@ function print_theme_header($day, $month, $year, $area, $room)
           <h4 class="modal-title" id="booking_rules_label"><?php echo get_vocab('booking_rules'); ?></h4>
         </div>
         <div class="modal-body">
-          <?php global $booking_rules; include $booking_rules . '.' . $default_language_tokens . '.html'; ?>
+          <?php echo get_booking_rules(); ?>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo get_vocab('Close'); ?></button>

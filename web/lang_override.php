@@ -1,12 +1,4 @@
 <?php
-// take language code from $_REQUEST or $_SESSION
-if (isset($_REQUEST['mylang']) && array_key_exists($_REQUEST['mylang'], $available_languages)) {
-	$default_language_tokens = $_REQUEST['mylang'];
-} else if (isset($_SESSION['mylang']) && array_key_exists($_SESSION['mylang'], $available_languages)) {
-	$default_language_tokens = $_SESSION['mylang'];
-}
-$_SESSION['mylang'] = $default_language_tokens;
-
 // language override
 $vocab_override['en']['mrbs'] = "Group Study Rooms";
 $vocab_override['fr']['mrbs'] = "Salles d'études";
@@ -52,4 +44,6 @@ $vocab_override['en']['logged_out'] = 'Logged out';
 $vocab_override['fr']['logged_out'] = 'Logged out';
 $vocab_override['en']['logged_out_success'] = 'You have been logged out successfully.';
 $vocab_override['fr']['logged_out_success'] = 'You have been logged out successfully.';
+$vocab_override['en']['global_title'] = 'Group Study Rooms | York University Libraries';
+$vocab_override['fr']['global_title'] = 'Group Study Rooms | York University Libraries';
 ?>

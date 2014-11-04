@@ -196,3 +196,11 @@ CREATE TABLE mrbs_closed_dates
   closed_date               date,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE mrbs_rules
+(
+  id    int NOT NULL auto_increment,
+  html  text,
+  lang  varchar(2),
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

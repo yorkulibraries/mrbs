@@ -210,4 +210,33 @@ function setup_memcache() {
         }
     }
 }
+
+function set_default_language() {
+    global $default_language_tokens, $available_languages;
+    // take language code from $_REQUEST or $_SESSION
+    if (isset($_REQUEST['mylang']) && array_key_exists($_REQUEST['mylang'], $available_languages)) {
+    	$default_language_tokens = $_REQUEST['mylang'];
+    } else if (isset($_SESSION['mylang']) && array_key_exists($_SESSION['mylang'], $available_languages)) {
+    	$default_language_tokens = $_SESSION['mylang'];
+    }
+    $_SESSION['mylang'] = $default_language_tokens;
+}
+
+function get_booking_rules() {
+    global $default_language_tokens;
+    // try finding rules matching language
+    $res = sql_query("SELECT * FROM mrbs_rules WHERE lang='$default_language_tokens' ORDER BY id DESC");
+    if ($res && sql_count($res) > 0) {
+        $row = sql_row_keyed($res, 0);
+        return $row['html'];
+    }
+    // try finding rules in any language
+    $res = sql_query("SELECT * FROM mrbs_rules ORDER BY id DESC");
+    if ($res && sql_count($res) > 0) {
+        $row = sql_row_keyed($res, 0);
+        return $row['html'];
+    }
+    // give up
+    return null;
+}
 ?>

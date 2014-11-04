@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 // $Id$
 
 // We use require for some files rather than require_once because the values that
@@ -10,7 +8,13 @@ require "grab_globals.inc.php";
 require_once "systemdefaults.inc.php";
 require_once "areadefaults.inc.php";
 require_once "config.inc.php";
+
 require_once "lang_override.php";
+require_once "york_functions.php";
+session_start();
+setup_memcache();
+set_default_language();
+
 require_once "language.inc";
 require_once "trailer.inc";
 require_once "internalconfig.inc.php";
@@ -20,6 +24,4 @@ require_once "dbsys.inc";
 require_once "mrbs_auth.inc";
 require "standard_vars.inc.php";
 
-require_once "york_functions.php";
-setup_memcache();
 override_area_hours($area);
