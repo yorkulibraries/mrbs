@@ -118,7 +118,6 @@ $max_per_interval_global['day'] = 1;      // max 1 bookings per day in total
 // language/locale
 $available_languages = array('en'=>'English', 'fr'=>'French');
 $default_language_tokens = 'en';
-$override_locale = $default_language_tokens . '_CA.UTF-8';
 
 // don't change language based on browser setttings
 $disable_automatic_language_changing = true;

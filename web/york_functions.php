@@ -212,7 +212,7 @@ function setup_memcache() {
 }
 
 function set_default_language() {
-    global $default_language_tokens, $available_languages;
+    global $override_locale, $default_language_tokens, $available_languages;
     // take language code from $_REQUEST or $_SESSION
     if (isset($_REQUEST['mylang']) && array_key_exists($_REQUEST['mylang'], $available_languages)) {
     	$default_language_tokens = $_REQUEST['mylang'];
@@ -220,6 +220,7 @@ function set_default_language() {
     	$default_language_tokens = $_SESSION['mylang'];
     }
     $_SESSION['mylang'] = $default_language_tokens;
+    $override_locale = $default_language_tokens . '_CA.UTF-8';
 }
 
 function get_booking_rules() {
