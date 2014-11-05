@@ -25,3 +25,4 @@ require_once "mrbs_auth.inc";
 require "standard_vars.inc.php";
 
 override_area_hours($area);
+sync_admins();

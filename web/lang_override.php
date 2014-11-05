@@ -48,4 +48,6 @@ $vocab_override['en']['global_title'] = 'Group Study Rooms | York University Lib
 $vocab_override['fr']['global_title'] = 'Group Study Rooms | York University Libraries';
 $vocab_override['en']['app_home'] = "Group Study Rooms";
 $vocab_override['fr']['app_home'] = "Salles d'études";
+$vocab_override['en']['administrators'] = "Administrators";
+$vocab_override['fr']['administrators'] = "Administrators";
 ?>

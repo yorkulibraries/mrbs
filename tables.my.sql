@@ -204,3 +204,11 @@ CREATE TABLE mrbs_rules
   lang  varchar(2),
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE mrbs_admins
+(
+  id                        int NOT NULL auto_increment,
+  username                  varchar(255),
+  UNIQUE KEY (username),
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

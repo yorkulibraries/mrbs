@@ -122,6 +122,9 @@ function print_theme_header($day, $month, $year, $area, $room)
 	              <li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="edit_rules.php?area=<?php echo $area; ?>"><?php echo get_vocab("booking_rules"); ?></a>
 	              </li>
+	              <li role="presentation">
+	                <a role="menuitem" tabindex="-1" href="edit_admins.php?area=<?php echo $area; ?>"><?php echo get_vocab("administrators"); ?></a>
+	              </li>
 								<li role="presentation">
 	                <a role="menuitem" tabindex="-1" href="report.php"><?php echo get_vocab("report"); ?></a>
 	              </li>

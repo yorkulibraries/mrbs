@@ -245,4 +245,26 @@ function get_booking_rules() {
     // give up
     return null;
 }
+
+function sync_admins() {
+    global $auth;
+    $admins_in_config = array_unique($auth['admin']);
+    $admins_in_db = array();
+    $res = sql_query("SELECT DISTINCT username FROM mrbs_admins");
+    if ($res) {
+        $count = sql_count($res);
+        for ($i = 0; $i < $count; $i++) {
+            $row = sql_row_keyed($res, $i);
+            $admins_in_db[] = $row['username'];
+        }
+    }
+    $add_to_db = array_diff($admins_in_config, $admins_in_db);
+    foreach ($add_to_db as $username) {
+        $sql = 'INSERT INTO mrbs_admins(username) '
+            . ' VALUES('
+            . "'" . sql_escape($username) . "'"
+            . ')';
+        sql_command($sql);
+    }
+}
 ?>
