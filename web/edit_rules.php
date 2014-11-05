@@ -85,6 +85,7 @@ if ($res && sql_count($res) > 0) {
 <script>
   $('textarea').wysihtml5({
     toolbar: {
+      html: true,
       fa: true
     }
   });
