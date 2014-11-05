@@ -266,5 +266,6 @@ function sync_admins() {
             . ')';
         sql_command($sql);
     }
+    $auth['admin'] = array_merge($admins_in_config, $admins_in_db);
 }
 ?>
